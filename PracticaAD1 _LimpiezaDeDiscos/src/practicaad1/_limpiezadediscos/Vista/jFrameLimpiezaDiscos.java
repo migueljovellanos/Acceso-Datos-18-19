@@ -5,12 +5,18 @@
  */
 package practicaad1._limpiezadediscos.Vista;
 
+import javax.swing.JFileChooser;
+import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
+
 /**
  *
  * @author migue
  */
 public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
+    JFileChooser chooser = new JFileChooser();
+    GestionLimpiezaDiscos gestion;
+            
     
     /**
      * Creates new form jFrameLimpiezaDiscos
@@ -30,19 +36,18 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
-        jLabelSeleccionarUnidad = new javax.swing.JLabel();
         jCheckBoxEliminarDirectoriosVacios = new javax.swing.JCheckBox();
         jCheckBoxEliminarFicherosPorCategoria = new javax.swing.JCheckBox();
         jCheckBoxEliminarFicherosGranTamaño = new javax.swing.JCheckBox();
         jCheckBoxEliminarFicherosAntiguos = new javax.swing.JCheckBox();
         jCheckBoxBuscarFicherosDuplicados = new javax.swing.JCheckBox();
+        jButtonSeleccionarUnidad = new javax.swing.JButton();
+        jLabelUnidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabelTitulo.setText("Herramienta de limpieza de discos");
-
-        jLabelSeleccionarUnidad.setText("Seleccionar unidad");
 
         jCheckBoxEliminarDirectoriosVacios.setText("Eliminar directorios Vacios");
 
@@ -54,6 +59,13 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         jCheckBoxBuscarFicherosDuplicados.setText("Buscar ficheros duplicados");
 
+        jButtonSeleccionarUnidad.setText("Seleccionar unidad");
+        jButtonSeleccionarUnidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSeleccionarUnidadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -64,13 +76,16 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                     .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelSeleccionarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBoxEliminarDirectoriosVacios)
-                            .addComponent(jCheckBoxEliminarFicherosPorCategoria)
                             .addComponent(jCheckBoxEliminarFicherosGranTamaño)
                             .addComponent(jCheckBoxEliminarFicherosAntiguos)
-                            .addComponent(jCheckBoxBuscarFicherosDuplicados))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jCheckBoxBuscarFicherosDuplicados)
+                            .addComponent(jCheckBoxEliminarFicherosPorCategoria))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSeleccionarUnidad)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabelUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -79,8 +94,10 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelSeleccionarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSeleccionarUnidad)
+                    .addComponent(jLabelUnidad))
+                .addGap(20, 20, 20)
                 .addComponent(jCheckBoxEliminarDirectoriosVacios)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxEliminarFicherosPorCategoria)
@@ -110,6 +127,13 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSeleccionarUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarUnidadActionPerformed
+         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+         chooser.showOpenDialog(jFrameLimpiezaDiscos.this);
+         jLabelUnidad.setText(chooser.getSelectedFile().getPath());
+         gestion = new GestionLimpiezaDiscos(chooser.getSelectedFile());
+    }//GEN-LAST:event_jButtonSeleccionarUnidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,13 +171,14 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSeleccionarUnidad;
     private javax.swing.JCheckBox jCheckBoxBuscarFicherosDuplicados;
     private javax.swing.JCheckBox jCheckBoxEliminarDirectoriosVacios;
     private javax.swing.JCheckBox jCheckBoxEliminarFicherosAntiguos;
     private javax.swing.JCheckBox jCheckBoxEliminarFicherosGranTamaño;
     private javax.swing.JCheckBox jCheckBoxEliminarFicherosPorCategoria;
-    private javax.swing.JLabel jLabelSeleccionarUnidad;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelUnidad;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
