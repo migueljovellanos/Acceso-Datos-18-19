@@ -42,7 +42,7 @@ public class OperacionesFicheros {
     public static ArrayList<String> ListarFicheros(String ruta, boolean ordenadosPorTamano, boolean soloDirectorios) throws MisExcepciones.NoEsDirectorio {
         File[] listaFicherosTemporal;
         ArrayList<File> listaFicheros = new ArrayList<>();
-        File dir = new File(ruta);
+        File directorioRuta = new File(ruta);
         ArrayList<String> listaString = new ArrayList<>();
 
         if (ruta.isEmpty()) {
@@ -53,11 +53,11 @@ public class OperacionesFicheros {
             }
         }
 
-        if (!dir.isDirectory()) {
+        if (!directorioRuta.isDirectory()) {
             throw new MisExcepciones.NoEsDirectorio();
         }
 
-        listaFicherosTemporal = dir.listFiles();
+        listaFicherosTemporal = directorioRuta.listFiles();
         for (File fichero : listaFicherosTemporal) {
             listaFicheros.add(fichero);
         }

@@ -5,6 +5,7 @@
  */
 package accesodatosficheros;
 
+import accesodatosficheros.Logica.EjerciciosByteStreams;
 import accesodatosficheros.Logica.MisExcepciones;
 import accesodatosficheros.Logica.OperacionesFicheros;
 import java.io.IOException;
@@ -21,13 +22,7 @@ public class AccesoDatosFicheros {
      * @param args the command line arguments
      */
     public static void main(String[] args)  {
-        
-     
-        try {
-            OperacionesFicheros.listarContenidoDirectorio("D:\\");
-        } catch (MisExcepciones.NoExisteDirectorio | MisExcepciones.NoEsDirectorio | IOException | MisExcepciones.NoPuedoLeer ex) {
-            Logger.getLogger(AccesoDatosFicheros.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        EjerciciosByteStreams ejer = new EjerciciosByteStreams();
        
     }
 
