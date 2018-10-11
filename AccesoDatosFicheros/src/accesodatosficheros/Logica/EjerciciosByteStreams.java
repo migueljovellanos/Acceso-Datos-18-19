@@ -21,9 +21,8 @@ public class EjerciciosByteStreams {
     public EjerciciosByteStreams() {
     }
 
-    
     public String leerArchivoTxt(String ruta) {
-   
+
         StringBuilder texto = new StringBuilder();
         File file = new File(ruta);
         if (file.isFile() && file.toString().endsWith(".txt")) {
@@ -32,7 +31,7 @@ public class EjerciciosByteStreams {
                 int content;
 
                 while ((content = fis.read()) != -1) {
-                    texto.append((char)content);
+                    texto.append((char) content);
                 }
                 fis.close();
 
@@ -45,44 +44,23 @@ public class EjerciciosByteStreams {
         }
         return texto.toString();
     }
-    
-    public String cifradoCesar(String textoACifrar){
+    /**
+     * Metodo que cifra o descifra un mensaje dependiendo del boolean 
+     * @param textoACifrar texto que se desea cifrar o descifrar
+     * @param codigoCifrado numero de caracteres que se desplaza cada caracter
+     * @param descifrar boolean que indica si deseas cifrar o descifrar el texto
+     * @return el mensaje cifrado o descifrado dependiendo del parametro descifrar
+     */
+    public String cifradoCesar(String textoACifrar, int codigoCifrado, boolean descifrar) {
         StringBuilder cifrado = new StringBuilder();
-        int codigo = 3 % 26;
-        for (int i = 0; i < textoACifrar.length(); i++) {
-            if (textoACifrar.charAt(i) >= 'a' && textoACifrar.charAt(i) <= 'z') {
-                if ((textoACifrar.charAt(i) + codigo) > 'z') {
-                    cifrado.append((char) (textoACifrar.charAt(i) + codigo - 26));
-                } else {
-                    cifrado.append((char) (textoACifrar.charAt(i) + codigo));
-                }
-            } else if (textoACifrar.charAt(i) >= 'A' && textoACifrar.charAt(i) <= 'Z') {
-                if ((textoACifrar.charAt(i) + codigo) > 'Z') {
-                    cifrado.append((char) (textoACifrar.charAt(i) + codigo - 26));
-                } else {
-                    cifrado.append((char) (textoACifrar.charAt(i) + codigo));
-                }
-            }
+        if (descifrar) {
+            codigoCifrado = -codigoCifrado;
         }
-        return cifrado.toString();
-    }
-    
-    public static String descifradoCesar(String textoADescifrar) {
-        StringBuilder cifrado = new StringBuilder();
-        int codigo = 3 % 26;
-        for (int i = 0; i < textoADescifrar.length(); i++) {
-            if (textoADescifrar.charAt(i) >= 'a' && textoADescifrar.charAt(i) <= 'z') {
-                if ((textoADescifrar.charAt(i) - codigo) < 'a') {
-                    cifrado.append((char) (textoADescifrar.charAt(i) - codigo + 26));
-                } else {
-                    cifrado.append((char) (textoADescifrar.charAt(i) - codigo));
-                }
-            } else if (textoADescifrar.charAt(i) >= 'A' && textoADescifrar.charAt(i) <= 'Z') {
-                if ((textoADescifrar.charAt(i) - codigo) < 'A') {
-                    cifrado.append((char) (textoADescifrar.charAt(i) - codigo + 26));
-                } else {
-                    cifrado.append((char) (textoADescifrar.charAt(i) - codigo));
-                }
+        for (int i = 0; i < textoACifrar.length(); i++) {
+            if ((textoACifrar.charAt(i) >= 'a' && textoACifrar.charAt(i) <= 'z') || (textoACifrar.charAt(i) >= 'A' && textoACifrar.charAt(i) <= 'Z' )) {
+                cifrado.append((char) (((textoACifrar.charAt(i) + 26 + codigoCifrado - 65) % 26) + 65));
+            }else {
+                cifrado.append((char) (textoACifrar.charAt(i)));
             }
         }
         return cifrado.toString();
