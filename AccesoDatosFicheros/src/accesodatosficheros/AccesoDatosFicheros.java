@@ -7,7 +7,7 @@ package accesodatosficheros;
 
 import accesodatosficheros.Logica.EjerciciosByteStreams;
 import accesodatosficheros.Logica.MisExcepciones;
-import accesodatosficheros.Logica.OperacionesFicheros;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +23,11 @@ public class AccesoDatosFicheros {
      */
     public static void main(String[] args)  {
         EjerciciosByteStreams ejer = new EjerciciosByteStreams();
-       
+        try {
+            ejer.contarDensidadDeCadaLetra(new File("C:\\Users\\migue\\Downloads\\LaRegentaUTF8.txt"), new File("C:\\Users\\migue\\Downloads\\Laregentautf8.html"));
+        } catch (MisExcepciones.NoExisteDirectorio | IOException ex) {
+            Logger.getLogger(AccesoDatosFicheros.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
