@@ -184,7 +184,7 @@ public class Filtros {
      * ultimas 24H
      * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
      */
-    public static String[] filtrarFicherosModificadosUltimas24H(String ruta) throws MisExcepciones.NoExisteDirectorio {
+    public static File[] filtrarFicherosModificadosUltimas24H(String ruta, int dias) throws MisExcepciones.NoExisteDirectorio {
         File dir = new File(ruta);
 
         if (!dir.exists()) {
@@ -195,14 +195,11 @@ public class Filtros {
             @Override
             public boolean accept(File pathname) {
                 Date fechaActual = new Date();
-                return (fechaActual.getTime() - pathname.lastModified() <= 8640000);
+                return (fechaActual.getTime() - pathname.lastModified() <=dias * 8640000);
 
             }
         });
-        String paths[] = new String[directorios.length];
-        for (int i = 0; i < paths.length; i++) {
-            paths[i] = directorios[i].getPath();
-        }
-        return paths;
+        
+        return directorios;
     }
 }

@@ -17,7 +17,7 @@ import practicaad1._limpiezadediscos.Logica.MisExcepciones;
  * @author migue
  */
 public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
-
+    
     JFileChooser chooser = new JFileChooser();
     GestionLimpiezaDiscos gestion;
 
@@ -49,6 +49,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jBContinuar = new javax.swing.JButton();
         jComboBoxCategoriasFichero = new javax.swing.JComboBox<>();
         jSpinnerTamano = new javax.swing.JSpinner();
+        jSpinnerDias = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +84,8 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         jSpinnerTamano.setModel(new javax.swing.SpinnerNumberModel(0, null, null, 5));
 
+        jSpinnerDias.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,15 +103,16 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                         .addComponent(jBContinuar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxEliminarFicherosAntiguos)
                             .addComponent(jCheckBoxBuscarFicherosDuplicados)
                             .addComponent(jCheckBoxEliminarDirectoriosVacios)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBoxEliminarFicherosGranTamaño)
-                                    .addComponent(jCheckBoxEliminarFicherosPorCategoria))
+                                    .addComponent(jCheckBoxEliminarFicherosPorCategoria)
+                                    .addComponent(jCheckBoxEliminarFicherosAntiguos))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSpinnerDias, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBoxCategoriasFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSpinnerTamano, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -134,7 +138,9 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                     .addComponent(jCheckBoxEliminarFicherosGranTamaño)
                     .addComponent(jSpinnerTamano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBoxEliminarFicherosAntiguos)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxEliminarFicherosAntiguos)
+                    .addComponent(jSpinnerDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxBuscarFicherosDuplicados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -188,18 +194,25 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             seleccionados++;
             int ficherosBorradosPorTamano = 0;
             try {
-                gestion.eliminarFicherosPorTamaño((int) jSpinnerTamano.getValue());
+                ficherosBorradosPorTamano = gestion.eliminarFicherosPorTamaño((int) jSpinnerTamano.getValue());
                 JOptionPane.showMessageDialog(this, "Se han borrado " + ficherosBorradosPorTamano + " ficheros de la carpeta " + gestion.getUnidad().getPath());
             } catch (MisExcepciones.NoExisteDirectorio ex) {
                 Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         } else if (jCheckBoxEliminarFicherosAntiguos.isSelected()) {
             seleccionados++;
-
+            int ficherosBorradosAntiguos = 0;
+            try {
+                ficherosBorradosAntiguos = gestion.eliminarFicherosAntiguos((int) jSpinnerDias.getValue());
+                JOptionPane.showMessageDialog(this, "Se han borrado " + ficherosBorradosAntiguos + " ficheros de la carpeta " + gestion.getUnidad().getPath());
+            } catch (MisExcepciones.NoExisteDirectorio ex) {
+                Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         } else if (jCheckBoxBuscarFicherosDuplicados.isSelected()) {
             seleccionados++;
-
+            
         }
     }//GEN-LAST:event_jBContinuarActionPerformed
 
@@ -250,6 +263,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelUnidad;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinnerDias;
     private javax.swing.JSpinner jSpinnerTamano;
     // End of variables declaration//GEN-END:variables
 }

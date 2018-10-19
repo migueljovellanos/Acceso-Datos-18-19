@@ -78,5 +78,20 @@ public class GestionLimpiezaDiscos {
 
         return contadorBorrados;
     }
+    
+    public int eliminarFicherosAntiguos(int dias) throws MisExcepciones.NoExisteDirectorio {
+        int contadorBorrados = 0;
+        File[] ficheros = Filtros.filtrarFicherosModificadosUltimas24H(getUnidad().getPath(), dias);
+
+        if (ficheros.length > 0) {
+            for (File fichero : ficheros) {
+                fichero.delete();
+                contadorBorrados++;
+            }
+        }
+
+        return contadorBorrados;
+    }
+    
 
 }
