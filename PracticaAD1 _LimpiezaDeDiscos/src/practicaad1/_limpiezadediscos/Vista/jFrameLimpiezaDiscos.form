@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -48,20 +48,33 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelTitulo" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBoxEliminarDirectoriosVacios" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxEliminarFicherosAntiguos" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxBuscarFicherosDuplicados" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jButtonSeleccionarUnidad" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="jLabelUnidad" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jCheckBoxEliminarFicherosAntiguos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxBuscarFicherosDuplicados" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxEliminarDirectoriosVacios" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jComboBoxCategoriasFichero" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerTamano" min="-2" pref="146" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -81,14 +94,22 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jCheckBoxEliminarDirectoriosVacios" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxEliminarFicherosPorCategoria" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxCategoriasFichero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxEliminarFicherosGranTamaño" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jSpinnerTamano" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jCheckBoxEliminarFicherosAntiguos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jCheckBoxBuscarFicherosDuplicados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="81" max="32767" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -136,6 +157,36 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelUnidad">
+        </Component>
+        <Component class="javax.swing.JButton" name="jBContinuar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Continuar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBContinuarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxCategoriasFichero">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Imagenes"/>
+                <StringItem index="1" value="Videos"/>
+                <StringItem index="2" value="Audios"/>
+                <StringItem index="3" value="Documentos"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="jSpinnerTamano">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
