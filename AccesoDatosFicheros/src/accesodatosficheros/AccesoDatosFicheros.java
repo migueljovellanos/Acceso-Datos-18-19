@@ -27,6 +27,7 @@ public class AccesoDatosFicheros {
             ejer.contarDensidadDeCadaLetra(new File("C:\\Users\\migue\\Downloads\\LaRegentaUTF8.txt"), new File("C:\\Users\\migue\\Downloads\\Laregentautf8.html"));
         } catch (MisExcepciones.NoExisteDirectorio | IOException ex) {
             Logger.getLogger(AccesoDatosFicheros.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("");
         }
     }
 
