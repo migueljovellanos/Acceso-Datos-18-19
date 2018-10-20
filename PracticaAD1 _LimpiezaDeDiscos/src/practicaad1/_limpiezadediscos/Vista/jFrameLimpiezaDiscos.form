@@ -54,26 +54,24 @@
                           <Component id="jLabelUnidad" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxEliminarFicherosAntiguos" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSpinnerDias" min="-2" pref="146" max="-2" attributes="0"/>
+                              <Component id="jComboBoxCategoriasFichero" min="-2" pref="146" max="-2" attributes="0"/>
+                              <Component id="jSpinnerTamano" min="-2" pref="146" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBoxBuscarFicherosDuplicados" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxEliminarDirectoriosVacios" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBoxEliminarFicherosAntiguos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jSpinnerDias" min="-2" pref="146" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxCategoriasFichero" min="-2" pref="146" max="-2" attributes="0"/>
-                                      <Component id="jSpinnerTamano" min="-2" pref="146" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jCheckBoxEliminarDirectoriosVacios" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxEliminarDirectoriosVaciosRecursivo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -94,25 +92,28 @@
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jCheckBoxEliminarDirectoriosVacios" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <Component id="jCheckBoxEliminarDirectoriosVaciosRecursivo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxCategoriasFichero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jBContinuar" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCheckBoxEliminarFicherosPorCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxCategoriasFichero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jSpinnerTamano" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCheckBoxEliminarFicherosAntiguos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jSpinnerDias" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBoxEliminarFicherosGranTamaño" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinnerTamano" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBoxEliminarFicherosAntiguos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinnerDias" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxBuscarFicherosDuplicados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
-                  <Component id="jBContinuar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -145,11 +146,6 @@
         <Component class="javax.swing.JCheckBox" name="jCheckBoxEliminarFicherosAntiguos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar ficheros antiguos"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBoxBuscarFicherosDuplicados">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Buscar ficheros duplicados"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSeleccionarUnidad">
@@ -197,6 +193,11 @@
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="1" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBoxEliminarDirectoriosVaciosRecursivo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar directorios Vacios Recursivamente"/>
           </Properties>
         </Component>
       </SubComponents>

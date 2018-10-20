@@ -14,14 +14,14 @@ import java.util.ArrayList;
  */
 public class GestionLimpiezaDiscos {
 
-    File unidad;
+    File unidadSeleccionada;
 
     public GestionLimpiezaDiscos(File unidad) {
-        this.unidad = unidad;
+        this.unidadSeleccionada = unidad;
     }
 
-    public File getUnidad() {
-        return unidad;
+    public File getUnidadSeleccionada() {
+        return unidadSeleccionada;
     }
 
     public int eliminarDirectoriosVacios() {
@@ -29,7 +29,7 @@ public class GestionLimpiezaDiscos {
         ArrayList<File> listaFicheros = new ArrayList<>();
         int contadorBorrados = 0;
 
-        listaFicherosTemporal = unidad.listFiles();
+        listaFicherosTemporal = unidadSeleccionada.listFiles();
         for (File fichero : listaFicherosTemporal) {
             listaFicheros.add(fichero);
         }
@@ -47,13 +47,13 @@ public class GestionLimpiezaDiscos {
         int contadorBorrados = 0;
         File[] ficheros = null;
         if (categoria.equals("Imagenes")) {
-            ficheros = Filtros.filtrarFicherosImagenes(getUnidad().getPath());
+            ficheros = Filtros.filtrarFicherosImagenes(getUnidadSeleccionada().getPath());
         } else if (categoria.equals("Videos")) {
-            ficheros = Filtros.filtrarFicherosVideo(getUnidad().getPath());
+            ficheros = Filtros.filtrarFicherosVideo(getUnidadSeleccionada().getPath());
         } else if (categoria.equals("Audios")) {
-            ficheros = Filtros.filtrarFicherosAudio(getUnidad().getPath());
+            ficheros = Filtros.filtrarFicherosAudio(getUnidadSeleccionada().getPath());
         } else if (categoria.equals("Documentos")) {
-            ficheros = Filtros.filtrarDocumentos(getUnidad().getPath());
+            ficheros = Filtros.filtrarDocumentos(getUnidadSeleccionada().getPath());
         }
 
         if (ficheros.length > 0) {
@@ -67,7 +67,7 @@ public class GestionLimpiezaDiscos {
 
     public int eliminarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
-        File[] ficheros = Filtros.filtrarFicherosTamanoMinimo(getUnidad().getPath(), tamano * 1048576);
+        File[] ficheros = Filtros.filtrarFicherosTamanoMinimo(getUnidadSeleccionada().getPath(), tamano * 1048576);
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
@@ -78,10 +78,10 @@ public class GestionLimpiezaDiscos {
 
         return contadorBorrados;
     }
-    
+
     public int eliminarFicherosAntiguos(int dias) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
-        File[] ficheros = Filtros.filtrarFicherosModificadosUltimas24H(getUnidad().getPath(), dias);
+        File[] ficheros = Filtros.filtrarFicherosModificadosUltimas24H(getUnidadSeleccionada().getPath(), dias);
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
@@ -92,6 +92,49 @@ public class GestionLimpiezaDiscos {
 
         return contadorBorrados;
     }
-    
+
+    public int eliminarDirectoriosVaciosRecursivo() {
+        File[] listaFicherosTemporal;
+        ArrayList<File> listaFicheros = new ArrayList<>();
+        int contadorBorrados = 0;
+
+        listaFicherosTemporal = unidadSeleccionada.listFiles();
+        for (File fichero : listaFicherosTemporal) {
+            listaFicheros.add(fichero);
+        }
+
+        for (File directorio : listaFicheros) {
+            if (directorio.exists()) {
+                contadorBorrados += eliminarDirectoriosVaciosRecursivoAux(directorio);
+            }
+        }
+        return contadorBorrados;
+    }
+
+    private int eliminarDirectoriosVaciosRecursivoAux(File ruta) {
+
+        File[] listaFicherosTemporal;
+        ArrayList<File> listaFicheros = new ArrayList<>();
+        int contadorBorrados = 0;
+
+        if (ruta.exists()) {
+            listaFicherosTemporal = ruta.listFiles();
+            for (File fichero : listaFicherosTemporal) {
+                listaFicheros.add(fichero);
+            }
+
+            for (File directorio : listaFicheros) {
+
+                if (directorio.isDirectory() && directorio.list().length == 0) {
+                    directorio.delete();
+                    contadorBorrados++;
+                } else {
+                    contadorBorrados += eliminarDirectoriosVaciosRecursivoAux(directorio);
+                }
+
+            }
+        }
+        return contadorBorrados;
+    }
 
 }
