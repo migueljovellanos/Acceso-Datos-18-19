@@ -7,6 +7,7 @@ package practicaad1._limpiezadediscos.Logica;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -93,48 +94,33 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
-    public int eliminarDirectoriosVaciosRecursivo() {
-        File[] listaFicherosTemporal;
-        ArrayList<File> listaFicheros = new ArrayList<>();
-        int contadorBorrados = 0;
-
-        listaFicherosTemporal = unidadSeleccionada.listFiles();
-        for (File fichero : listaFicherosTemporal) {
-            listaFicheros.add(fichero);
-        }
-
-        for (File directorio : listaFicheros) {
-            if (directorio.exists()) {
-                contadorBorrados += eliminarDirectoriosVaciosRecursivoAux(directorio);
-            }
-        }
-        return contadorBorrados;
-    }
-
-    private int eliminarDirectoriosVaciosRecursivoAux(File ruta) {
-
-        File[] listaFicherosTemporal;
-        ArrayList<File> listaFicheros = new ArrayList<>();
-        int contadorBorrados = 0;
-
-        if (ruta.exists()) {
-            listaFicherosTemporal = ruta.listFiles();
-            for (File fichero : listaFicherosTemporal) {
-                listaFicheros.add(fichero);
-            }
-
-            for (File directorio : listaFicheros) {
-
-                if (directorio.isDirectory() && directorio.list().length == 0) {
-                    directorio.delete();
-                    contadorBorrados++;
+    public List<File> buscaCarpetasVacias(File carpetaRaiz) {
+        //siempre retornamos al menos una lista vacía
+        List<File> resultado = new ArrayList<>();
+        if (carpetaRaiz.isDirectory()) {
+            File[] carpetas = carpetaRaiz.listFiles(File::isDirectory);
+            for (File carpeta : carpetas) {
+                if (carpeta.listFiles().length == 0) {
+                    resultado.add(carpeta);
                 } else {
-                    contadorBorrados += eliminarDirectoriosVaciosRecursivoAux(directorio);
+                    resultado.addAll(buscaCarpetasVacias(carpeta));
                 }
-
             }
+        }
+        return resultado;
+    }
+
+    public int eliminarDirectoriosVaciosRecursivo() {
+        int contadorBorrados = 0;
+        List<File> listaCarpetasVacias = buscaCarpetasVacias(unidadSeleccionada);
+        //de la implementación anterior, sabemos que
+        //el método por lo menos retornará una lista vacía
+        //no necesitamos hacer una validaciób en caso de nulos
+        for (File carpeta : listaCarpetasVacias) {
+            System.out.println(String.format("Borrando la carpeta %s", carpeta.getAbsolutePath()));
+            carpeta.delete();
+            contadorBorrados++;
         }
         return contadorBorrados;
     }
-
 }
