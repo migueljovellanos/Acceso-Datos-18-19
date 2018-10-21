@@ -5,8 +5,6 @@
  */
 package practicaad1._limpiezadediscos.Logica;
 
-/*un excepcion mas */
-
 /**
  *
  * @author migue
