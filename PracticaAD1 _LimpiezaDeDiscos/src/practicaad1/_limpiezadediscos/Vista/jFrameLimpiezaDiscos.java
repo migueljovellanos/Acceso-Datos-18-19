@@ -17,7 +17,7 @@ import practicaad1._limpiezadediscos.Logica.MisExcepciones;
  * @author migue
  */
 public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
-    
+
     JFileChooser chooser = new JFileChooser();
     GestionLimpiezaDiscos gestion;
 
@@ -60,9 +60,14 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         jCheckBoxEliminarFicherosPorCategoria.setText("Eliminar ficheros por categoria");
 
-        jCheckBoxEliminarFicherosGranTamaño.setText("Eliminar ficheros de gran tamaño");
+        jCheckBoxEliminarFicherosGranTamaño.setText("Eliminar ficheros de gran tamaño (Mb.)");
+        jCheckBoxEliminarFicherosGranTamaño.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxEliminarFicherosGranTamañoActionPerformed(evt);
+            }
+        });
 
-        jCheckBoxEliminarFicherosAntiguos.setText("Eliminar ficheros antiguos");
+        jCheckBoxEliminarFicherosAntiguos.setText("Eliminar ficheros antiguos (Dias)");
 
         jButtonSeleccionarUnidad.setText("Seleccionar unidad");
         jButtonSeleccionarUnidad.addActionListener(new java.awt.event.ActionListener() {
@@ -179,12 +184,12 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             seleccionados++;
             int directoriosVaciosBorrados = gestion.eliminarDirectoriosVacios();
             JOptionPane.showMessageDialog(this, "Se han borrado " + directoriosVaciosBorrados + " directorios vacios de la carpeta " + gestion.getUnidadSeleccionada().getPath());
-        } else if(jCheckBoxEliminarDirectoriosVaciosRecursivo.isSelected()){
+        } else if (jCheckBoxEliminarDirectoriosVaciosRecursivo.isSelected()) {
             seleccionados++;
             int directoriosVaciosBorrados = gestion.eliminarDirectoriosVaciosRecursivo();
-            JOptionPane.showMessageDialog(this, "Se han borrado " + directoriosVaciosBorrados + " directorios vacios de la carpeta " + gestion.getUnidadSeleccionada().getPath()+" y de sus subcarpetas.");
-        
-        }else if (jCheckBoxEliminarFicherosPorCategoria.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Se han borrado " + directoriosVaciosBorrados + " directorios vacios de la carpeta " + gestion.getUnidadSeleccionada().getPath() + " y de sus subcarpetas.");
+
+        } else if (jCheckBoxEliminarFicherosPorCategoria.isSelected()) {
             seleccionados++;
             int opcion = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea borrar todos los archivos de la categoria : " + jComboBoxCategoriasFichero.getSelectedItem().toString() + " de la carpeta " + gestion.getUnidadSeleccionada().getPath() + " ?", "dialogo confirmacion", JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
@@ -204,7 +209,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             } catch (MisExcepciones.NoExisteDirectorio ex) {
                 Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } else if (jCheckBoxEliminarFicherosAntiguos.isSelected()) {
             seleccionados++;
             int ficherosBorradosAntiguos = 0;
@@ -214,14 +219,17 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             } catch (MisExcepciones.NoExisteDirectorio ex) {
                 Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
-        
-        
-        if(seleccionados==0){
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna opcion. \n Por favor seleccione al menos una.", "Error por no seleccionar opcion",JOptionPane.WARNING_MESSAGE);
+
+        if (seleccionados == 0) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna opcion. \n Por favor seleccione al menos una.", "Error por no seleccionar opcion", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jBContinuarActionPerformed
+
+    private void jCheckBoxEliminarFicherosGranTamañoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEliminarFicherosGranTamañoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxEliminarFicherosGranTamañoActionPerformed
 
     /**
      * @param args the command line arguments

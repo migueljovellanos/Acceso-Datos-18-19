@@ -94,13 +94,13 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
-    public List<File> buscaCarpetasVacias(File carpetaRaiz) {
+    private List<File> buscaCarpetasVacias(File carpetaRaiz) {
         //siempre retornamos al menos una lista vacía
         List<File> resultado = new ArrayList<>();
         if (carpetaRaiz.isDirectory()) {
             File[] carpetas = carpetaRaiz.listFiles(File::isDirectory);
             for (File carpeta : carpetas) {
-                if (carpeta.listFiles().length == 0) {
+                if (carpeta.isDirectory() && carpeta.listFiles().length == 0) {
                     resultado.add(carpeta);
                 } else {
                     resultado.addAll(buscaCarpetasVacias(carpeta));

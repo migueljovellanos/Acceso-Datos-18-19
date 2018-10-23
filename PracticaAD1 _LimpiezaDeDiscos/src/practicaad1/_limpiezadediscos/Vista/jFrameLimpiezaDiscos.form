@@ -140,12 +140,15 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBoxEliminarFicherosGranTama&#xf1;o">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar ficheros de gran tama&#xf1;o"/>
+            <Property name="text" type="java.lang.String" value="Eliminar ficheros de gran tama&#xf1;o (Mb.)"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxEliminarFicherosGranTama&#xf1;oActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBoxEliminarFicherosAntiguos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar ficheros antiguos"/>
+            <Property name="text" type="java.lang.String" value="Eliminar ficheros antiguos (Dias)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSeleccionarUnidad">
