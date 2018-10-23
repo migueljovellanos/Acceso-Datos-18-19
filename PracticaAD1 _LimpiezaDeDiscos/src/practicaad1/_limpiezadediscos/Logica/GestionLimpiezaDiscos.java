@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class GestionLimpiezaDiscos {
 
-    File unidadSeleccionada;
+    private File unidadSeleccionada;
+    private String log ="";
 
     public GestionLimpiezaDiscos(File unidad) {
         this.unidadSeleccionada = unidad;
@@ -28,6 +29,15 @@ public class GestionLimpiezaDiscos {
     public File getUnidadSeleccionada() {
         return unidadSeleccionada;
     }
+    
+    /**
+     * Metodo que devuelve el log del programa.
+     * @return String con la informacion generada por el programa.
+     */
+    public String getLog() {
+        return log;
+    }    
+    
 
     /**
      * Metodo que elimina los directorios vacios de la carpeta seleccionada.
@@ -45,6 +55,7 @@ public class GestionLimpiezaDiscos {
 
         for (File directorio : listaFicheros) {
             if (directorio.isDirectory() && directorio.list().length == 0) {
+                log+="Borrando %s"+directorio.getAbsolutePath()+"\n";
                 directorio.delete();
                 contadorBorrados++;
             }
@@ -73,6 +84,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
+                log+="Borrando %s"+fichero.getAbsolutePath()+"\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -92,6 +104,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
+                log+="Borrando %s"+fichero.getAbsolutePath()+"\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -112,6 +125,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
+                log+="Borrando %s"+fichero.getAbsolutePath()+"\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -151,9 +165,9 @@ public class GestionLimpiezaDiscos {
         //de la implementación anterior, sabemos que
         //el método por lo menos retornará una lista vacía
         //no necesitamos hacer una validaciób en caso de nulos
-        for (File carpeta : listaCarpetasVacias) {
-            System.out.println(String.format("Borrando la carpeta %s", carpeta.getAbsolutePath()));
-            carpeta.delete();
+        for (File directorio : listaCarpetasVacias) {
+            log+="Borrando %s"+directorio.getAbsolutePath()+"\n";
+            directorio.delete();
             contadorBorrados++;
         }
         return contadorBorrados;

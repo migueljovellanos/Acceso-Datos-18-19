@@ -177,7 +177,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jLabelUnidad.setText(chooser.getSelectedFile().getPath());
         gestion = new GestionLimpiezaDiscos(chooser.getSelectedFile());
     }//GEN-LAST:event_jButtonSeleccionarUnidadActionPerformed
-    
+
     private void jBContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBContinuarActionPerformed
         int seleccionados = 0;
         if (jCheckBoxEliminarDirectoriosVacios.isSelected()) {
@@ -224,7 +224,11 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         if (seleccionados == 0) {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna opcion. \n Por favor seleccione al menos una.", "Error por no seleccionar opcion", JOptionPane.WARNING_MESSAGE);
+        } else {
+            jDialogLog log = new jDialogLog(this, rootPaneCheckingEnabled, gestion);
+            log.setVisible(true);
         }
+
     }//GEN-LAST:event_jBContinuarActionPerformed
 
     private void jCheckBoxEliminarFicherosGranTamañoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEliminarFicherosGranTamañoActionPerformed
