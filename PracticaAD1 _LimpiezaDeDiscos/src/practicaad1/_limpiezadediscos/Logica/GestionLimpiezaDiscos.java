@@ -55,7 +55,7 @@ public class GestionLimpiezaDiscos {
 
         for (File directorio : listaFicheros) {
             if (directorio.isDirectory() && directorio.list().length == 0) {
-                log+="Borrando %s"+directorio.getAbsolutePath()+"\n";
+                log+="Borrando "+directorio.getAbsolutePath()+"\n";
                 directorio.delete();
                 contadorBorrados++;
             }
@@ -84,7 +84,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
-                log+="Borrando %s"+fichero.getAbsolutePath()+"\n";
+                log+="Borrando "+fichero.getAbsolutePath()+"\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -104,7 +104,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
-                log+="Borrando %s"+fichero.getAbsolutePath()+"\n";
+                log+="Borrando "+fichero.getAbsolutePath()+"\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -125,7 +125,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
-                log+="Borrando %s"+fichero.getAbsolutePath()+"\n";
+                log+="Borrando "+fichero.getAbsolutePath()+"\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -166,7 +166,7 @@ public class GestionLimpiezaDiscos {
         //el método por lo menos retornará una lista vacía
         //no necesitamos hacer una validaciób en caso de nulos
         for (File directorio : listaCarpetasVacias) {
-            log+="Borrando %s"+directorio.getAbsolutePath()+"\n";
+            log+="Borrando "+directorio.getAbsolutePath()+"\n";
             directorio.delete();
             contadorBorrados++;
         }
