@@ -6,8 +6,10 @@
 package practicaad1._limpiezadediscos.Logica;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -16,31 +18,33 @@ import java.util.List;
 public class GestionLimpiezaDiscos {
 
     private File unidadSeleccionada;
-    private String log ="";
+    private String log = "";
 
     public GestionLimpiezaDiscos(File unidad) {
         this.unidadSeleccionada = unidad;
     }
-    
+
     /**
      * Metodo que devuelve la unidad seleccionada para trabajar en el programa.
+     *
      * @return File con la unidad seleccionada.
      */
     public File getUnidadSeleccionada() {
         return unidadSeleccionada;
     }
-    
+
     /**
      * Metodo que devuelve el log del programa.
+     *
      * @return String con la informacion generada por el programa.
      */
     public String getLog() {
         return log;
-    }    
-    
+    }
 
     /**
      * Metodo que elimina los directorios vacios de la carpeta seleccionada.
+     *
      * @return El numero de directorios vacios.
      */
     public int eliminarDirectoriosVacios() {
@@ -55,7 +59,7 @@ public class GestionLimpiezaDiscos {
 
         for (File directorio : listaFicheros) {
             if (directorio.isDirectory() && directorio.list().length == 0) {
-                log+="Borrando "+directorio.getAbsolutePath()+"\n";
+                log += "Borrando " + directorio.getAbsolutePath() + "\n";
                 directorio.delete();
                 contadorBorrados++;
             }
@@ -64,10 +68,14 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que borra todos los ficheros de una determinada categoria pasada por parametro.
-     * @param categoria de la cual se desean borrar todos los archivos de la carpeta seleccionada.
+     * Metodo que borra todos los ficheros de una determinada categoria pasada
+     * por parametro.
+     *
+     * @param categoria de la cual se desean borrar todos los archivos de la
+     * carpeta seleccionada.
      * @return El numero de ficheros borrados.
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public int eliminarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
@@ -84,7 +92,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
-                log+="Borrando "+fichero.getAbsolutePath()+"\n";
+                log += "Borrando " + fichero.getAbsolutePath() + "\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -93,10 +101,14 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que borra todos los ficheros de un tamaño mayor al pasado por parametro ( en MB).
-     * @param tamano tamaño en mb a partir del cual se borraran todos los ficheros mayores.
+     * Metodo que borra todos los ficheros de un tamaño mayor al pasado por
+     * parametro ( en MB).
+     *
+     * @param tamano tamaño en mb a partir del cual se borraran todos los
+     * ficheros mayores.
      * @return El numero de ficheros borrados.
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public int eliminarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
@@ -104,7 +116,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
-                log+="Borrando "+fichero.getAbsolutePath()+"\n";
+                log += "Borrando " + fichero.getAbsolutePath() + "\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -114,10 +126,13 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que borra todos los ficheros cuya ultima modificacion hace tantos dias o mas como el numero de dias que se le pasa por parametro.
+     * Metodo que borra todos los ficheros cuya ultima modificacion hace tantos
+     * dias o mas como el numero de dias que se le pasa por parametro.
+     *
      * @param dias numero de dias a partir del cual se borraran los ficheros.
      * @return El numero de ficheros borrados.
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public int eliminarFicherosAntiguos(int dias) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
@@ -125,7 +140,7 @@ public class GestionLimpiezaDiscos {
 
         if (ficheros.length > 0) {
             for (File fichero : ficheros) {
-                log+="Borrando "+fichero.getAbsolutePath()+"\n";
+                log += "Borrando " + fichero.getAbsolutePath() + "\n";
                 fichero.delete();
                 contadorBorrados++;
             }
@@ -135,9 +150,13 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo privado auxiliar cuya funcion es buscar todas las carpetas vacias recursivamente añadiendolas a la lista de File resultado.
-     * @param carpetaRaiz directorio a partir del cual se buscaran los directorios vacios.
-     * @return Una lista de ficheros en la que se encuentran los directorios vacios a partir de la carpetaRaiz.
+     * Metodo privado auxiliar cuya funcion es buscar todas las carpetas vacias
+     * recursivamente añadiendolas a la lista de File resultado.
+     *
+     * @param carpetaRaiz directorio a partir del cual se buscaran los
+     * directorios vacios.
+     * @return Una lista de ficheros en la que se encuentran los directorios
+     * vacios a partir de la carpetaRaiz.
      */
     private List<File> buscaCarpetasVacias(File carpetaRaiz) {
         //siempre retornamos al menos una lista vacía
@@ -156,7 +175,9 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que elimina todos los directorios vacios que recive del metodo privado buscaCarpetasVacias al que se llama dentro de este metodo.
+     * Metodo que elimina todos los directorios vacios que recive del metodo
+     * privado buscaCarpetasVacias al que se llama dentro de este metodo.
+     *
      * @return Numero de directorios borrados por estar vacios.
      */
     public int eliminarDirectoriosVaciosRecursivo() {
@@ -166,10 +187,74 @@ public class GestionLimpiezaDiscos {
         //el método por lo menos retornará una lista vacía
         //no necesitamos hacer una validaciób en caso de nulos
         for (File directorio : listaCarpetasVacias) {
-            log+="Borrando "+directorio.getAbsolutePath()+"\n";
+            log += "Borrando " + directorio.getAbsolutePath() + "\n";
             directorio.delete();
             contadorBorrados++;
         }
         return contadorBorrados;
+    }
+
+    public List<List<File>> eliminarArchivosDuplicados() {
+        List<File> duplicadosA = new ArrayList<>();
+        List<File> duplicadosB = new ArrayList<>();
+
+        List<File> listaArchivosDiscoA = listarArchivosRecursivo(unidadSeleccionada);
+        List<File> listaArchivosDiscoB = listaArchivosDiscoA;
+
+        for (int posA = 0; posA < listaArchivosDiscoA.size(); posA++) {
+            for (int posB = 0; posB < listaArchivosDiscoB.size(); posB++) {
+                if (posA != posB) {
+                    if (CompareFiles(listaArchivosDiscoA.get(posA), listaArchivosDiscoB.get(posB))) {
+                        duplicadosA.add(listaArchivosDiscoA.get(posA));
+                        duplicadosB.add(listaArchivosDiscoB.get(posB));
+                    }
+                }
+            }
+        }
+        
+        List<List<File>> duplicados = new ArrayList<>();
+        duplicados.add(duplicadosA);
+        duplicados.add(duplicadosB);
+        
+        return duplicados;
+    }
+
+    private List<File> listarArchivosRecursivo(File carpetaRaiz) {
+        //siempre retornamos al menos una lista vacía
+        List<File> resultado = new ArrayList<>();
+
+        File[] archivos = carpetaRaiz.listFiles();
+        for (File archivo : archivos) {
+            resultado.addAll(listarArchivosRecursivo(archivo));
+        }
+        return resultado;
+    }
+
+    private boolean CompareFiles(File A, File B) {
+        try {
+
+            Scanner scannerA = new Scanner(A);
+
+            Scanner scannerB = new Scanner(B);
+
+            boolean result = true;
+
+            while (result) {
+
+                if (scannerA.nextByte() != scannerB.nextByte()) {
+                    result = false;
+                }
+
+            }
+
+            return result;
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println(e.getMessage());
+
+            return false;
+
+        }
     }
 }
