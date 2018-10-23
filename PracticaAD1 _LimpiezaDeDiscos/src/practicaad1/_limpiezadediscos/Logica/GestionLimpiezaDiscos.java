@@ -20,11 +20,19 @@ public class GestionLimpiezaDiscos {
     public GestionLimpiezaDiscos(File unidad) {
         this.unidadSeleccionada = unidad;
     }
-
+    
+    /**
+     * Metodo que devuelve la unidad seleccionada para trabajar en el programa.
+     * @return File con la unidad seleccionada.
+     */
     public File getUnidadSeleccionada() {
         return unidadSeleccionada;
     }
 
+    /**
+     * Metodo que elimina los directorios vacios de la carpeta seleccionada.
+     * @return el numero de directorios vacios.
+     */
     public int eliminarDirectoriosVacios() {
         File[] listaFicherosTemporal;
         ArrayList<File> listaFicheros = new ArrayList<>();
@@ -44,6 +52,12 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
+    /**
+     * Metodo que borra todos los ficheros de una determinada categoria pasada por parametro.
+     * @param categoria de la cual se desean borrar todos los archivos de la carpeta seleccionada.
+     * @return el numero de ficheros borrados.
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     */
     public int eliminarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
         File[] ficheros = null;
@@ -66,6 +80,12 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
+    /**
+     * Metodo que borra todos los ficheros de un tamaño mayor al pasado por parametro ( en MB).
+     * @param tamano tamaño en mb a partir del cual se borraran todos los ficheros mayores.
+     * @return el numero de ficheros borrados.
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     */
     public int eliminarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
         File[] ficheros = Filtros.filtrarFicherosTamanoMinimo(getUnidadSeleccionada().getPath(), tamano * 1048576);
@@ -80,6 +100,12 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
+    /**
+     * Metodo que borra todos los ficheros cuya ultima modificacion hace tantos dias o mas como el numero de dias que se le pasa por parametro.
+     * @param dias numero de dias a partir del cual se borraran los ficheros.
+     * @return el numero de ficheros borrados.
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     */
     public int eliminarFicherosAntiguos(int dias) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
         File[] ficheros = Filtros.filtrarFicherosModificadosUltimas24H(getUnidadSeleccionada().getPath(), dias);
@@ -94,6 +120,11 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
+    /**
+     * Metodo privado auxiliar cuya funcion es buscar todas las carpetas vacias recursivamente añadiendolas a la lista de File resultado.
+     * @param carpetaRaiz directorio a partir del cual se buscaran los directorios vacios.
+     * @return una lista de ficheros en la que se encuentran los directorios vacios a partir de la carpetaRaiz.
+     */
     private List<File> buscaCarpetasVacias(File carpetaRaiz) {
         //siempre retornamos al menos una lista vacía
         List<File> resultado = new ArrayList<>();
@@ -110,6 +141,10 @@ public class GestionLimpiezaDiscos {
         return resultado;
     }
 
+    /**
+     * Metodo que elimina todos los directorios vacios que recive del metodo privado buscaCarpetasVacias al que se llama dentro de este metodo.
+     * @return numero de directorios borrados por estar vacios.
+     */
     public int eliminarDirectoriosVaciosRecursivo() {
         int contadorBorrados = 0;
         List<File> listaCarpetasVacias = buscaCarpetasVacias(unidadSeleccionada);

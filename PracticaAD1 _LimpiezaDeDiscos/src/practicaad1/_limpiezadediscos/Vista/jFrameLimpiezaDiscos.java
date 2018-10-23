@@ -177,7 +177,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jLabelUnidad.setText(chooser.getSelectedFile().getPath());
         gestion = new GestionLimpiezaDiscos(chooser.getSelectedFile());
     }//GEN-LAST:event_jButtonSeleccionarUnidadActionPerformed
-
+    
     private void jBContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBContinuarActionPerformed
         int seleccionados = 0;
         if (jCheckBoxEliminarDirectoriosVacios.isSelected()) {
