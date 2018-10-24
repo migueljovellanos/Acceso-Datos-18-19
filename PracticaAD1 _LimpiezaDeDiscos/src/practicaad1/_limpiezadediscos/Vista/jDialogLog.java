@@ -12,28 +12,30 @@ import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
  * @author miguel
  */
 public class jDialogLog extends javax.swing.JDialog {
+
     private GestionLimpiezaDiscos gestion;
 
     /**
      * Creates new form jDialogLog from frame
      */
-    public jDialogLog(java.awt.Frame parent, boolean modal,GestionLimpiezaDiscos gestion) {
+    public jDialogLog(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();
-        this.gestion=gestion;
+        this.setLocationRelativeTo(parent);
+        this.gestion = gestion;
         pintarTextArea();
         jTextAreaLog.setEditable(false);
-   }
-    
+    }
+
     /**
      * Creates new form jDialogLog from dialog
      */
-    public jDialogLog(java.awt.Dialog parent, boolean modal,GestionLimpiezaDiscos gestion) {
+    public jDialogLog(java.awt.Dialog parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();
-        this.gestion=gestion;
+        this.gestion = gestion;
         pintarTextArea();
-   }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,7 +101,6 @@ public class jDialogLog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
@@ -110,9 +111,9 @@ public class jDialogLog extends javax.swing.JDialog {
 
     private void pintarTextArea() {
         String texto = gestion.getLog();
-        if(texto.equals("")){
+        if (texto.equals("")) {
             jTextAreaLog.setText("No se ha eliminado nada del disco. \nPrograma ejecutado con exito");
-        }else{
+        } else {
             jTextAreaLog.setText(texto);
         }
     }

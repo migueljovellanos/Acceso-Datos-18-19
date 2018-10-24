@@ -23,6 +23,7 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
     public jDialogSeleccionarUnidad(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(parent);
         this.gestion = gestion;
         jButtonContinuar.setEnabled(false);
     }
@@ -109,7 +110,7 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
         return gestion;
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonContinuar;
     private javax.swing.JButton jButtonUnidad;

@@ -84,7 +84,7 @@ public class GestionLimpiezaDiscos {
      * @throws
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
-    public int eliminarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
+    public int seleccionarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
         int contadorBorrados = 0;
         File[] ficheros = null;
         if (categoria.equals("Imagenes")) {

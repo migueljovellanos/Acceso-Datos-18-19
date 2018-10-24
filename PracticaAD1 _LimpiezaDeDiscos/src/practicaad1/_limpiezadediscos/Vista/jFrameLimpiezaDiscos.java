@@ -22,11 +22,12 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
      */
     public jFrameLimpiezaDiscos() {
         initComponents();
+        this.setLocationRelativeTo(null);
         jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
         jDialogSeleccionarUnidad.setVisible(true);
         this.gestion=jDialogSeleccionarUnidad.getGestion();
         jLabelRuta.setText(gestion.getUnidadSeleccionada().getAbsolutePath());
-       
+        
         
     }
 
@@ -51,6 +52,8 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Herramienta limpieza disco");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabelTitulo.setText("Herramienta de limpieza de discos");
