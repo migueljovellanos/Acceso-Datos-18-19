@@ -8,7 +8,9 @@ package practicaad1._limpiezadediscos.Logica;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -26,94 +28,48 @@ public class Filtros {
      * filtro(Imagenes)
      * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
      */
-    public static File[] filtrarFicherosImagenes(String ruta) throws MisExcepciones.NoExisteDirectorio {
-        File dir = new File(ruta);
-        if (!dir.exists()) {
-            throw new MisExcepciones.NoExisteDirectorio();
-        }
-        File[] ficheros = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith("jpg") || name.endsWith("gif") || name.endsWith("tiff") || name.endsWith("jpeg") || name.endsWith("PNG");
+    public static List<File> filtrarFicherosImagenes(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
+        List<File> ficherosFiltrados = new ArrayList();
+        for (File fichero : ficheros) {
+            String name = fichero.getName();
+            if (name.endsWith("jpg") || name.endsWith("gif") || name.endsWith("tiff") || name.endsWith("jpeg") || name.endsWith("PNG")) {
+                ficherosFiltrados.add(fichero);
             }
-        });
-
-        return ficheros;
+        }
+        return ficherosFiltrados;
     }
 
-    /**
-     * Metodo que retorna los nombres de los archivos (Videos) que cumplen el
-     * filtro
-     *
-     * @param ruta String en el que se pasa la ruta en la que se buscan los
-     * ficheros
-     * @return Array de Strings con el nombre de los ficheros que cumplen el
-     * filtro(Videos)
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
-     */
-    public static File[] filtrarFicherosVideo(String ruta) throws MisExcepciones.NoExisteDirectorio {
-        File dir = new File(ruta);
-        if (!dir.exists()) {
-            throw new MisExcepciones.NoExisteDirectorio();
-        }
-        File[] ficheros = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith("avi") || name.endsWith("mpeg") || name.endsWith("mov") || name.endsWith("flv") || name.endsWith("mkv");
+    public static List<File> filtrarFicherosVideos(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
+        List<File> ficherosFiltrados = new ArrayList();
+        for (File fichero : ficheros) {
+            String name = fichero.getName();
+            if (name.endsWith("avi") || name.endsWith("mpeg") || name.endsWith("mov") || name.endsWith("flv") || name.endsWith("mkv")) {
+                ficherosFiltrados.add(fichero);
             }
-        });
-
-        return ficheros;
+        }
+        return ficherosFiltrados;
     }
 
-    /**
-     * Metodo que retorna los nombres de los archivos (Videos) que cumplen el
-     * filtro
-     *
-     * @param ruta String en el que se pasa la ruta en la que se buscan los
-     * ficheros
-     * @return Array de Strings con el nombre de los ficheros que cumplen el
-     * filtro(Videos)
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
-     */
-    public static File[] filtrarFicherosAudio(String ruta) throws MisExcepciones.NoExisteDirectorio {
-        File dir = new File(ruta);
-        if (!dir.exists()) {
-            throw new MisExcepciones.NoExisteDirectorio();
-        }
-        File[] ficheros = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith("mp3") || name.endsWith("mp4") || name.endsWith("FLAC") || name.endsWith("raw") || name.endsWith("aac");
+    public static List<File> filtrarFicherosAudio(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
+        List<File> ficherosFiltrados = new ArrayList();
+        for (File fichero : ficheros) {
+            String name = fichero.getName();
+            if (name.endsWith("mp3") || name.endsWith("mp4") || name.endsWith("FLAC") || name.endsWith("raw") || name.endsWith("aac")) {
+                ficherosFiltrados.add(fichero);
             }
-        });
-
-        return ficheros;
+        }
+        return ficherosFiltrados;
     }
 
-    /**
-     * Metodo que retorna los nombres de los archivos (Videos) que cumplen el
-     * filtro
-     *
-     * @param ruta String en el que se pasa la ruta en la que se buscan los
-     * ficheros
-     * @return Array de Strings con el nombre de los ficheros que cumplen el
-     * filtro(Videos)
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
-     */
-    public static File[] filtrarDocumentos(String ruta) throws MisExcepciones.NoExisteDirectorio {
-        File dir = new File(ruta);
-        if (!dir.exists()) {
-            throw new MisExcepciones.NoExisteDirectorio();
-        }
-        File[] ficheros = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith("pdf") || name.endsWith("doc") || name.endsWith("txt") || name.endsWith("rtf") || name.endsWith("odt");
+    public static List<File> filtrarFicherosDocumentos(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
+        List<File> ficherosFiltrados = new ArrayList();
+        for (File fichero : ficheros) {
+            String name = fichero.getName();
+            if (name.endsWith("pdf") || name.endsWith("doc") || name.endsWith("txt") || name.endsWith("rtf") || name.endsWith("odt")) {
+                ficherosFiltrados.add(fichero);
             }
-        });
-
-        return ficheros;
+        }
+        return ficherosFiltrados;
     }
 
     /**
@@ -195,11 +151,11 @@ public class Filtros {
             @Override
             public boolean accept(File pathname) {
                 Date fechaActual = new Date();
-                return (fechaActual.getTime() - pathname.lastModified() <=dias * 8640000);
+                return (fechaActual.getTime() - pathname.lastModified() <= dias * 8640000);
 
             }
         });
-        
+
         return directorios;
     }
 }

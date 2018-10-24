@@ -84,27 +84,28 @@ public class GestionLimpiezaDiscos {
      * @throws
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
-    public int seleccionarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
-        int contadorBorrados = 0;
-        File[] ficheros = null;
-        if (categoria.equals("Imagenes")) {
-            ficheros = Filtros.filtrarFicherosImagenes(getUnidadSeleccionada().getPath());
-        } else if (categoria.equals("Videos")) {
-            ficheros = Filtros.filtrarFicherosVideo(getUnidadSeleccionada().getPath());
-        } else if (categoria.equals("Audios")) {
-            ficheros = Filtros.filtrarFicherosAudio(getUnidadSeleccionada().getPath());
-        } else if (categoria.equals("Documentos")) {
-            ficheros = Filtros.filtrarDocumentos(getUnidadSeleccionada().getPath());
-        }
+    public List<File> seleccionarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
 
-        if (ficheros.length > 0) {
-            for (File fichero : ficheros) {
-                log += "Borrando " + fichero.getAbsolutePath() + "\n";
-                fichero.delete();
-                contadorBorrados++;
-            }
+        List<File> ficheros = listarArchivosRecursivo(unidadSeleccionada);
+        List<File> ficherosFiltrados = new ArrayList<>();
+        switch (categoria) {
+            case "Imagenes":
+                ficherosFiltrados = Filtros.filtrarFicherosImagenes(ficheros);
+                break;
+            case "Videos":
+                ficherosFiltrados = Filtros.filtrarFicherosVideos(ficheros);
+                break;
+            case "Audios":
+                ficherosFiltrados = Filtros.filtrarFicherosAudio(ficheros);
+                break;
+            case "Documentos":
+                ficherosFiltrados = Filtros.filtrarFicherosDocumentos(ficheros);
+                break;
+            default:
+                break;
         }
-        return contadorBorrados;
+        
+        return ficherosFiltrados;
     }
 
     /**
@@ -213,7 +214,7 @@ public class GestionLimpiezaDiscos {
             }
         });
 
-        for (int pos = 0; pos < listaArchivosDisco.size()-1; pos++) {
+        for (int pos = 0; pos < listaArchivosDisco.size() - 1; pos++) {
             if (CompareFiles(listaArchivosDisco.get(pos), listaArchivosDisco.get(pos + 1))) {
                 duplicados.add(listaArchivosDisco.get(pos));
             }
@@ -244,8 +245,8 @@ public class GestionLimpiezaDiscos {
         try {
             byte[] f1 = Files.readAllBytes(archivoA.toPath());
             byte[] f2 = Files.readAllBytes(archivoB.toPath());
-            
-            return Arrays.equals(f1,f2);
+
+            return Arrays.equals(f1, f2);
         } catch (IOException ex) {
             Logger.getLogger(GestionLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
         }
