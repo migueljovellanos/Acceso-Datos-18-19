@@ -8,6 +8,8 @@ package practicaad1._limpiezadediscos.Logica;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -194,29 +196,27 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
-    public List<List<File>> eliminarArchivosDuplicados() {
-        List<File> duplicadosA = new ArrayList<>();
-        List<File> duplicadosB = new ArrayList<>();
+    public List<File> eliminarArchivosDuplicados() {
+        List<File> duplicados = new ArrayList<>();
 
-        List<File> listaArchivosDiscoA = listarArchivosRecursivo(unidadSeleccionada);
-        List<File> listaArchivosDiscoB = listaArchivosDiscoA;
+        List<File> listaArchivosDisco = listarArchivosRecursivo(unidadSeleccionada);
 
-        for (int posA = 0; posA < listaArchivosDiscoA.size(); posA++) {
-            for (int posB = 0; posB < listaArchivosDiscoB.size(); posB++) {
-                if (posA != posB) {
-                    if (CompareFiles(listaArchivosDiscoA.get(posA), listaArchivosDiscoB.get(posB))) {
-                        duplicadosA.add(listaArchivosDiscoA.get(posA));
-                        duplicadosB.add(listaArchivosDiscoB.get(posB));
-                    }
-                }
+        Collections.sort(duplicados, new Comparator<File>() {
+            @Override
+            public int compare(File file1, File file2) {
+               return file1.getName().compareTo(file2.getName());
+            }
+        });
+        
+        
+        for (int posA = 0; posA < listaArchivosDisco.size()-1; posA++) {
+            if (CompareFiles(listaArchivosDisco.get(posA),listaArchivosDisco.get(posA+1))) {
+                duplicados.add(listaArchivosDisco.get(posA));
             }
         }
-        
-        List<List<File>> duplicados = new ArrayList<>();
-        duplicados.add(duplicadosA);
-        duplicados.add(duplicadosB);
-        
+
         return duplicados;
+
     }
 
     private List<File> listarArchivosRecursivo(File carpetaRaiz) {
