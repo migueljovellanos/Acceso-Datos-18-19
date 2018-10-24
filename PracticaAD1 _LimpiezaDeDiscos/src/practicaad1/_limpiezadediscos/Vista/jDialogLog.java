@@ -15,9 +15,20 @@ public class jDialogLog extends javax.swing.JDialog {
     private GestionLimpiezaDiscos gestion;
 
     /**
-     * Creates new form jDialogLog
+     * Creates new form jDialogLog from frame
      */
     public jDialogLog(java.awt.Frame parent, boolean modal,GestionLimpiezaDiscos gestion) {
+        super(parent, modal);
+        initComponents();
+        this.gestion=gestion;
+        pintarTextArea();
+        jTextAreaLog.setEditable(false);
+   }
+    
+    /**
+     * Creates new form jDialogLog from dialog
+     */
+    public jDialogLog(java.awt.Dialog parent, boolean modal,GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();
         this.gestion=gestion;

@@ -7,11 +7,16 @@ package practicaad1._limpiezadediscos.Logica;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -199,19 +204,18 @@ public class GestionLimpiezaDiscos {
     public List<File> eliminarArchivosDuplicados() {
         List<File> duplicados = new ArrayList<>();
 
-        List<File> listaArchivosDisco = listarArchivosRecursivo(unidadSeleccionada);
+        List<File> listaArchivosDisco = listarArchivosRecursivo(getUnidadSeleccionada());
 
         Collections.sort(duplicados, new Comparator<File>() {
             @Override
             public int compare(File file1, File file2) {
-               return file1.getName().compareTo(file2.getName());
+                return file1.getName().compareTo(file2.getName());
             }
         });
-        
-        
-        for (int posA = 0; posA < listaArchivosDisco.size()-1; posA++) {
-            if (CompareFiles(listaArchivosDisco.get(posA),listaArchivosDisco.get(posA+1))) {
-                duplicados.add(listaArchivosDisco.get(posA));
+
+        for (int pos = 0; pos < listaArchivosDisco.size()-1; pos++) {
+            if (CompareFiles(listaArchivosDisco.get(pos), listaArchivosDisco.get(pos + 1))) {
+                duplicados.add(listaArchivosDisco.get(pos));
             }
         }
 
@@ -220,41 +224,31 @@ public class GestionLimpiezaDiscos {
     }
 
     private List<File> listarArchivosRecursivo(File carpetaRaiz) {
-        //siempre retornamos al menos una lista vacía
         List<File> resultado = new ArrayList<>();
 
         File[] archivos = carpetaRaiz.listFiles();
+
         for (File archivo : archivos) {
-            resultado.addAll(listarArchivosRecursivo(archivo));
+            if (archivo.isDirectory()) {
+                resultado.addAll(listarArchivosRecursivo(archivo));
+            } else {
+                resultado.add(archivo);
+            }
         }
+
         return resultado;
     }
 
-    private boolean CompareFiles(File A, File B) {
+    private boolean CompareFiles(File archivoA, File archivoB) {
+
         try {
-
-            Scanner scannerA = new Scanner(A);
-
-            Scanner scannerB = new Scanner(B);
-
-            boolean result = true;
-
-            while (result) {
-
-                if (scannerA.nextByte() != scannerB.nextByte()) {
-                    result = false;
-                }
-
-            }
-
-            return result;
-
-        } catch (FileNotFoundException e) {
-
-            System.out.println(e.getMessage());
-
-            return false;
-
+            byte[] f1 = Files.readAllBytes(archivoA.toPath());
+            byte[] f2 = Files.readAllBytes(archivoB.toPath());
+            
+            return Arrays.equals(f1,f2);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 }
