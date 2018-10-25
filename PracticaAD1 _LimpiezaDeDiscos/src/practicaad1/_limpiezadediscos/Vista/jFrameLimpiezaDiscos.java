@@ -19,6 +19,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
     JFileChooser chooser = new JFileChooser();
     GestionLimpiezaDiscos gestion;
+    static boolean cerrar = false;
 
     /**
      * Creates new form jFrameLimpiezaDiscos
@@ -28,11 +29,20 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
         jDialogSeleccionarUnidad.setVisible(true);
-        this.gestion=jDialogSeleccionarUnidad.getGestion();
-        jLabelRuta.setText(gestion.getUnidadSeleccionada().getAbsolutePath());
-        
-        
+        if (jDialogSeleccionarUnidad.getGestion() != null) {
+            this.gestion = jDialogSeleccionarUnidad.getGestion();
+            jLabelRuta.setText(gestion.getUnidadSeleccionada().getAbsolutePath());
+        } else {
+            cerrar = true;
+        }
+
     }
+
+    public static boolean isCerrar() {
+        return cerrar;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,7 +55,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonLimpiarDisco = new javax.swing.JButton();
         jLabelOpcionesExtra = new javax.swing.JLabel();
         jButtonBorrarImagenes = new javax.swing.JButton();
         jButtonBorrarVideos = new javax.swing.JButton();
@@ -53,6 +63,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jButtonBorrarMusica = new javax.swing.JButton();
         jLabelRuta = new javax.swing.JLabel();
         jLabel = new javax.swing.JLabel();
+        jButtonSeleccionarUnidad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Herramienta limpieza disco");
@@ -61,10 +72,10 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabelTitulo.setText("Herramienta de limpieza de discos");
 
-        jButton1.setText("Ejecutar limpieza disco.");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpiarDisco.setText("Ejecutar limpieza disco.");
+        jButtonLimpiarDisco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonLimpiarDiscoActionPerformed(evt);
             }
         });
 
@@ -104,17 +115,24 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jLabel.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel.setText("Ruta: ");
 
+        jButtonSeleccionarUnidad.setText("Cambiar unidad");
+        jButtonSeleccionarUnidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSeleccionarUnidadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(jButtonLimpiarDisco)
                             .addComponent(jLabelOpcionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButtonBorrarImagenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,6 +141,8 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                                 .addComponent(jButtonBorrarDocumentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSeleccionarUnidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -136,9 +156,11 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSeleccionarUnidad)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonLimpiarDisco)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelOpcionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,7 +171,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                 .addComponent(jButtonBorrarMusica)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonBorrarDocumentos)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,15 +194,15 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonLimpiarDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarDiscoActionPerformed
         gestion.eliminarDirectoriosVaciosRecursivo();
         jDialogLog log = new jDialogLog(this, rootPaneCheckingEnabled, gestion);
         log.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonLimpiarDiscoActionPerformed
 
     private void jButtonBorrarImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarImagenesActionPerformed
         try {
-            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Imagenes",gestion);
+            jDialogBorrarCategoria dialog = new jDialogBorrarCategoria(this, rootPaneCheckingEnabled, "Imagenes", gestion);
             dialog.setVisible(true);
         } catch (MisExcepciones.NoExisteDirectorio ex) {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,7 +211,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
     private void jButtonBorrarVideosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarVideosActionPerformed
         try {
-            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Videos",gestion);
+            jDialogBorrarCategoria dialog = new jDialogBorrarCategoria(this, rootPaneCheckingEnabled, "Videos", gestion);
             dialog.setVisible(true);
         } catch (MisExcepciones.NoExisteDirectorio ex) {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,7 +220,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
     private void jButtonBorrarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarMusicaActionPerformed
         try {
-            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Audios",gestion);
+            jDialogBorrarCategoria dialog = new jDialogBorrarCategoria(this, rootPaneCheckingEnabled, "Audios", gestion);
             dialog.setVisible(true);
         } catch (MisExcepciones.NoExisteDirectorio ex) {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
@@ -207,12 +229,21 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
     private void jButtonBorrarDocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarDocumentosActionPerformed
         try {
-            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Documentos",gestion);
+            jDialogBorrarCategoria dialog = new jDialogBorrarCategoria(this, rootPaneCheckingEnabled, "Documentos", gestion);
             dialog.setVisible(true);
         } catch (MisExcepciones.NoExisteDirectorio ex) {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonBorrarDocumentosActionPerformed
+
+    private void jButtonSeleccionarUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarUnidadActionPerformed
+        jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
+        jDialogSeleccionarUnidad.setVisible(true);
+        if (jDialogSeleccionarUnidad.getGestion() != null) {
+            this.gestion = jDialogSeleccionarUnidad.getGestion();
+            jLabelRuta.setText(gestion.getUnidadSeleccionada().getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonSeleccionarUnidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,17 +275,23 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFrameLimpiezaDiscos().setVisible(true);
+                jFrameLimpiezaDiscos frame = new jFrameLimpiezaDiscos();
+                if (frame.isCerrar()){
+                    frame.dispose();
+                }else{
+                    frame.setVisible(true);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrarDocumentos;
     private javax.swing.JButton jButtonBorrarImagenes;
     private javax.swing.JButton jButtonBorrarMusica;
     private javax.swing.JButton jButtonBorrarVideos;
+    private javax.swing.JButton jButtonLimpiarDisco;
+    private javax.swing.JButton jButtonSeleccionarUnidad;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabelOpcionesExtra;
     private javax.swing.JLabel jLabelRuta;
