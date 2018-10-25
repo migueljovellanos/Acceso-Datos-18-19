@@ -5,8 +5,11 @@
  */
 package practicaad1._limpiezadediscos.Vista;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
+import practicaad1._limpiezadediscos.Logica.MisExcepciones;
 
 /**
  *
@@ -76,10 +79,25 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         });
 
         jButtonBorrarVideos.setText("Borrar videos");
+        jButtonBorrarVideos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarVideosActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarDocumentos.setText("Borrar documentos");
+        jButtonBorrarDocumentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarDocumentosActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarMusica.setText("Borrar musica");
+        jButtonBorrarMusica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarMusicaActionPerformed(evt);
+            }
+        });
 
         jLabelRuta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
@@ -161,9 +179,40 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonBorrarImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarImagenesActionPerformed
-        jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled);
-        dialog.setVisible(true);
+        try {
+            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Imagenes",gestion);
+            dialog.setVisible(true);
+        } catch (MisExcepciones.NoExisteDirectorio ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonBorrarImagenesActionPerformed
+
+    private void jButtonBorrarVideosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarVideosActionPerformed
+        try {
+            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Videos",gestion);
+            dialog.setVisible(true);
+        } catch (MisExcepciones.NoExisteDirectorio ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonBorrarVideosActionPerformed
+
+    private void jButtonBorrarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarMusicaActionPerformed
+        try {
+            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Audios",gestion);
+            dialog.setVisible(true);
+        } catch (MisExcepciones.NoExisteDirectorio ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonBorrarMusicaActionPerformed
+
+    private void jButtonBorrarDocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarDocumentosActionPerformed
+        try {
+            jDialogBorrarCategoria dialog= new jDialogBorrarCategoria(this, rootPaneCheckingEnabled,"Documentos",gestion);
+            dialog.setVisible(true);
+        } catch (MisExcepciones.NoExisteDirectorio ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonBorrarDocumentosActionPerformed
 
     /**
      * @param args the command line arguments

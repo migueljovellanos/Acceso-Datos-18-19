@@ -252,4 +252,11 @@ public class GestionLimpiezaDiscos {
         }
         return false;
     }
+    
+    
+    public void deleteFiles(List<File> archivos){
+         for (File file : archivos) {
+                file.delete();
+            }
+    }
 }

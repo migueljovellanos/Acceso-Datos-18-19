@@ -18,16 +18,7 @@ import java.util.List;
  */
 public class Filtros {
 
-    /**
-     * Metodo que retorna los nombres de los archivos (Imagenes) que cumplen el
-     * filtro
-     *
-     * @param ruta String en el que se pasa la ruta en la que se buscan los
-     * ficheros
-     * @return Array de Strings con el nombre de los ficheros que cumplen el
-     * filtro(Imagenes)
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
-     */
+    
     public static List<File> filtrarFicherosImagenes(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
@@ -43,7 +34,7 @@ public class Filtros {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
             String name = fichero.getName();
-            if (name.endsWith("avi") || name.endsWith("mpeg") || name.endsWith("mov") || name.endsWith("flv") || name.endsWith("mkv")) {
+            if (name.endsWith("avi") || name.endsWith("mpeg") || name.endsWith("mov") || name.endsWith("flv") || name.endsWith("mkv")|| name.endsWith("mp4")) {
                 ficherosFiltrados.add(fichero);
             }
         }
@@ -54,7 +45,7 @@ public class Filtros {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
             String name = fichero.getName();
-            if (name.endsWith("mp3") || name.endsWith("mp4") || name.endsWith("FLAC") || name.endsWith("raw") || name.endsWith("aac")) {
+            if (name.endsWith("mp3")|| name.endsWith("FLAC") || name.endsWith("raw") || name.endsWith("aac")) {
                 ficherosFiltrados.add(fichero);
             }
         }
