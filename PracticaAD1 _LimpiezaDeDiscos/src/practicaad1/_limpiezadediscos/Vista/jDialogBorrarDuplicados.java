@@ -19,21 +19,19 @@ import practicaad1._limpiezadediscos.Logica.MisExcepciones;
  *
  * @author miguel
  */
-public class jDialogBorrarCategoria extends javax.swing.JDialog {
+public class jDialogBorrarDuplicados extends javax.swing.JDialog {
 
     private GestionLimpiezaDiscos gestion;
     private List<File> listaArchivos;
-    private String categoria;
 
     /**
      * Creates new form jDialogBorrarCategoria
      */
-    public jDialogBorrarCategoria(java.awt.Frame parent, boolean modal, String categoria, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
+    public jDialogBorrarDuplicados(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
         super(parent, modal);
         initComponents();
         this.gestion = gestion;
-        this.categoria= categoria;
-        this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
+        this.listaArchivos = gestion.getArchivosDuplicados();
         this.setLocationRelativeTo(parent);
         this.setLocationRelativeTo(parent);
         pintarTabla();
@@ -127,26 +125,25 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
 
     private void jButtonBorrarSeleccionadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarSeleccionadosActionPerformed
         int[] filasSeleccionadas = jTableArchivos.getSelectedRows();
-        List<File> archivosABorrar= new ArrayList<>();
+        List<File> archivosABorrar = new ArrayList<>();
         for (int i = 0; i < filasSeleccionadas.length; i++) {
             int fila = filasSeleccionadas[i];
-            archivosABorrar.add(listaArchivos.get(fila)); 
+            archivosABorrar.add(listaArchivos.get(fila));
         }
         int opcion = JOptionPane.showConfirmDialog(this, "¿ Seguro que desea borrar estos ficheros ?");
-        if(opcion == 0){
+        if (opcion == 0) {
             gestion.deleteFiles(archivosABorrar);
         }
-       
+
         try {
             pintarTabla();
         } catch (MisExcepciones.NoExisteDirectorio ex) {
-            Logger.getLogger(jDialogBorrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(jDialogBorrarDuplicados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonBorrarSeleccionadosActionPerformed
-    
-    
-    private void pintarTabla() throws MisExcepciones.NoExisteDirectorio{
-        this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
+
+    private void pintarTabla() throws MisExcepciones.NoExisteDirectorio {
+        this.listaArchivos = gestion.getArchivosDuplicados();
         jTableArchivos.setModel(new TableModelArchivos(listaArchivos));
     }
 

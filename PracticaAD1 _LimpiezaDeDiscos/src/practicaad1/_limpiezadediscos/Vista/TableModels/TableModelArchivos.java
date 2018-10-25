@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practicaad1._limpiezadediscos.Vista;
+package practicaad1._limpiezadediscos.Vista.TableModels;
 
 import java.io.File;
 import java.util.List;

@@ -202,7 +202,7 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
-    public List<File> eliminarArchivosDuplicados() {
+    public List<File> getArchivosDuplicados() {
         List<File> duplicados = new ArrayList<>();
 
         List<File> listaArchivosDisco = listarArchivosRecursivo(getUnidadSeleccionada());
