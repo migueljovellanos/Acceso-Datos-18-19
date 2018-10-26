@@ -5,6 +5,7 @@
  */
 package practicaad1._limpiezadediscos.Vista;
 
+import java.awt.Desktop;
 import practicaad1._limpiezadediscos.Vista.TableModels.TableModelArchivos;
 import java.io.File;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
 import practicaad1._limpiezadediscos.Logica.MisExcepciones;
 
@@ -32,11 +35,12 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.gestion = gestion;
-        this.categoria= categoria;
+        this.categoria = categoria;
         this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
         this.setLocationRelativeTo(parent);
         this.setLocationRelativeTo(parent);
         pintarTabla();
+
     }
 
     /**
@@ -127,27 +131,29 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
 
     private void jButtonBorrarSeleccionadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarSeleccionadosActionPerformed
         int[] filasSeleccionadas = jTableArchivos.getSelectedRows();
-        List<File> archivosABorrar= new ArrayList<>();
+        List<File> archivosABorrar = new ArrayList<>();
         for (int i = 0; i < filasSeleccionadas.length; i++) {
-            int fila = filasSeleccionadas[i];
-            archivosABorrar.add(listaArchivos.get(fila)); 
+            int fila = jTableArchivos.convertRowIndexToModel(filasSeleccionadas[i]);
+            archivosABorrar.add(listaArchivos.get(fila));
         }
         int opcion = JOptionPane.showConfirmDialog(this, "¿ Seguro que desea borrar estos ficheros ?");
-        if(opcion == 0){
+        if (opcion == 0) {
             gestion.deleteFiles(archivosABorrar);
         }
-       
+
         try {
             pintarTabla();
         } catch (MisExcepciones.NoExisteDirectorio ex) {
             Logger.getLogger(jDialogBorrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonBorrarSeleccionadosActionPerformed
-    
-    
-    private void pintarTabla() throws MisExcepciones.NoExisteDirectorio{
+
+    private void pintarTabla() throws MisExcepciones.NoExisteDirectorio {
         this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
-        jTableArchivos.setModel(new TableModelArchivos(listaArchivos));
+        TableModelArchivos modelo = new TableModelArchivos(listaArchivos);
+        jTableArchivos.setModel(modelo);
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
+        jTableArchivos.setRowSorter(elQueOrdena);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
