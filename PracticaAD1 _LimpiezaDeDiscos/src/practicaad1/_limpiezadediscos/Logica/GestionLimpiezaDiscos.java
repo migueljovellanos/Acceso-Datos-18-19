@@ -26,6 +26,7 @@ public class GestionLimpiezaDiscos {
 
     private File unidadSeleccionada;
     private String log = "";
+    private int size;
 
     public GestionLimpiezaDiscos(File unidad) {
         this.unidadSeleccionada = unidad;
@@ -74,6 +75,15 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    
     /**
      * Metodo que borra todos los ficheros de una determinada categoria pasada
      * por parametro.
@@ -118,19 +128,8 @@ public class GestionLimpiezaDiscos {
      * @throws
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
-    public int eliminarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
-        int contadorBorrados = 0;
-        File[] ficheros = Filtros.filtrarFicherosTamanoMinimo(getUnidadSeleccionada().getPath(), tamano * 1048576);
-
-        if (ficheros.length > 0) {
-            for (File fichero : ficheros) {
-                log += "Borrando " + fichero.getAbsolutePath() + "\n";
-                fichero.delete();
-                contadorBorrados++;
-            }
-        }
-
-        return contadorBorrados;
+    public List<File> eliminarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
+          return Filtros.filtrarFicherosTamanoMinimo(listarArchivosRecursivo(unidadSeleccionada), tamano);
     }
 
     /**

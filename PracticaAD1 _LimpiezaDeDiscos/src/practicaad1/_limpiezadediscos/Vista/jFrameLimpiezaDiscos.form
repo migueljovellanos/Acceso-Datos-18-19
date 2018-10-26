@@ -30,7 +30,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,7 +50,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -62,7 +62,6 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonLimpiarDisco" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelOpcionesExtra" min="-2" pref="238" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -72,14 +71,24 @@
                                       <Component id="jButtonBorrarDocumentos" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="jButtonBorrarDuplicados" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jButtonEliminarFicherosSize" max="32767" attributes="0"/>
+                                      <Component id="jButtonBorrarDuplicados" max="32767" attributes="0"/>
+                                      <Component id="jButtonLimpiarDisco" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelEspacioLibreTotal" min="-2" pref="238" max="-2" attributes="0"/>
+                              <Component id="jLabelTitulo" min="-2" pref="598" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <Component id="jLabelTitulo" alignment="1" min="-2" pref="598" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -95,9 +104,9 @@
                           <Component id="jButtonSeleccionarUnidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabelEspacioLibreTotal" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonLimpiarDisco" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelOpcionesExtra" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -105,9 +114,15 @@
                       <Component id="jButtonBorrarDuplicados" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonBorrarVideos" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonBorrarVideos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonEliminarFicherosSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonBorrarMusica" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonBorrarMusica" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonLimpiarDisco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonBorrarDocumentos" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -125,7 +140,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonLimpiarDisco">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ejecutar limpieza disco."/>
+            <Property name="text" type="java.lang.String" value="Borrar directorios vacios"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLimpiarDiscoActionPerformed"/>
@@ -207,6 +223,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBorrarDuplicadosActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonEliminarFicherosSize">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Borrar archivos por tama&#xf1;o"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEliminarFicherosSizeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelEspacioLibreTotal">
         </Component>
       </SubComponents>
     </Container>

@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class Filtros {
 
-    
     public static List<File> filtrarFicherosImagenes(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
@@ -34,7 +33,7 @@ public class Filtros {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
             String name = fichero.getName();
-            if (name.endsWith("avi") || name.endsWith("mpeg") || name.endsWith("mov") || name.endsWith("flv") || name.endsWith("mkv")|| name.endsWith("mp4")) {
+            if (name.endsWith("avi") || name.endsWith("mpeg") || name.endsWith("mov") || name.endsWith("flv") || name.endsWith("mkv") || name.endsWith("mp4")) {
                 ficherosFiltrados.add(fichero);
             }
         }
@@ -45,7 +44,7 @@ public class Filtros {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
             String name = fichero.getName();
-            if (name.endsWith("mp3")|| name.endsWith("FLAC") || name.endsWith("raw") || name.endsWith("aac")) {
+            if (name.endsWith("mp3") || name.endsWith("FLAC") || name.endsWith("raw") || name.endsWith("aac")) {
                 ficherosFiltrados.add(fichero);
             }
         }
@@ -93,32 +92,16 @@ public class Filtros {
         return paths;
     }
 
-    /**
-     * Metodo que devuelve los nombres de los ficheros que tienen un tamaño
-     * mayor al tamaño minimo pasado por parametro
-     *
-     * @param ruta String en el que se pasa la ruta en la que se buscan los
-     * ficheros
-     * @param tamanoMinimo tamaño minimo (en bytes) de los ficheros que se desea
-     * buscar
-     * @return Array de Strings con el nombre de los ficheros mayores que el
-     * tamaño minimo
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
-     */
-    public static File[] filtrarFicherosTamanoMinimo(String ruta, long tamanoMinimo) throws MisExcepciones.NoExisteDirectorio {
-        File dir = new File(ruta);
+    public static List<File> filtrarFicherosTamanoMinimo(List<File> ficheros, long tamanoMinimo) throws MisExcepciones.NoExisteDirectorio {
 
-        if (!dir.exists()) {
-            throw new MisExcepciones.NoExisteDirectorio();
-        }
-        File[] directorios = dir.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return (tamanoMinimo < pathname.length());
+        List<File> ficherosFiltrados = new ArrayList();
+        for (File fichero : ficheros) {
+            if (tamanoMinimo < Math.toIntExact((fichero.length() / 1024) / 1024)) {
+                ficherosFiltrados.add(fichero);
             }
-        });
+        }
+        return ficherosFiltrados;
 
-        return directorios;
     }
 
     /**
