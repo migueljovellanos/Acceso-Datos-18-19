@@ -5,9 +5,6 @@
  */
 package practicaad1._limpiezadediscos.Vista;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
 
 /**
@@ -25,6 +22,7 @@ public class jDialogSeleccionSize extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.gestion = gestion;
+        this.setLocationRelativeTo(null);
         jSliderSize.setMaximum(1000);
         jSliderSize.setMinimum(1);
     }
@@ -98,7 +96,7 @@ public class jDialogSeleccionSize extends javax.swing.JDialog {
     }//GEN-LAST:event_jSliderSizeStateChanged
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        gestion.setSize(jSliderSize.getValue());
+        gestion.setSize((int)jSliderSize.getValue());
         this.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 

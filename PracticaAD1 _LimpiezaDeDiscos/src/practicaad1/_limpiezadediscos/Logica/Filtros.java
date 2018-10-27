@@ -7,7 +7,6 @@ package practicaad1._limpiezadediscos.Logica;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +16,18 @@ import java.util.List;
  * @author migue
  */
 public class Filtros {
+    
+    public static List<File> filtrarFicherosTamanoMinimo(List<File> ficheros, int tamanoMinimo) throws MisExcepciones.NoExisteDirectorio {
+
+        List<File> ficherosFiltrados = new ArrayList();
+        for (File fichero : ficheros) {
+            if (tamanoMinimo < ((int) (fichero.length() / 1024) / 1024)) {
+                ficherosFiltrados.add(fichero);
+            }
+        }
+        return ficherosFiltrados;
+
+    }
 
     public static List<File> filtrarFicherosImagenes(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
@@ -92,17 +103,7 @@ public class Filtros {
         return paths;
     }
 
-    public static List<File> filtrarFicherosTamanoMinimo(List<File> ficheros, long tamanoMinimo) throws MisExcepciones.NoExisteDirectorio {
-
-        List<File> ficherosFiltrados = new ArrayList();
-        for (File fichero : ficheros) {
-            if (tamanoMinimo < Math.toIntExact((fichero.length() / 1024) / 1024)) {
-                ficherosFiltrados.add(fichero);
-            }
-        }
-        return ficherosFiltrados;
-
-    }
+    
 
     /**
      * Metodo que devuelve los nombres de los ficheros que fueron modificados en

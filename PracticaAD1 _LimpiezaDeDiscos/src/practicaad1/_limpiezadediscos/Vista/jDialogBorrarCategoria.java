@@ -5,7 +5,6 @@
  */
 package practicaad1._limpiezadediscos.Vista;
 
-import java.awt.Desktop;
 import practicaad1._limpiezadediscos.Vista.TableModels.TableModelArchivos;
 import java.io.File;
 import java.util.ArrayList;

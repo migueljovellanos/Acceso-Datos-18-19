@@ -26,16 +26,17 @@ public class jDialogBorrarSize extends javax.swing.JDialog {
 
     private GestionLimpiezaDiscos gestion;
     private List<File> listaArchivos;
-    private int Size;
+    private int sizeMin;
 
     /**
      * Creates new form jDialogBorrarCategoria
      */
-    public jDialogBorrarSize(java.awt.Frame parent, boolean modal, int size, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
+    public jDialogBorrarSize(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
         super(parent, modal);
         initComponents();
         this.gestion = gestion;
-        this.listaArchivos = gestion.eliminarFicherosPorTamaño(size);
+        this.sizeMin= this.gestion.getSize();
+        this.listaArchivos = this.gestion.seleccionarFicherosPorTamaño(sizeMin);
         this.setLocationRelativeTo(null);
         pintarTabla();
 
@@ -147,7 +148,7 @@ public class jDialogBorrarSize extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarSeleccionadosActionPerformed
 
     private void pintarTabla() throws MisExcepciones.NoExisteDirectorio {
-        this.listaArchivos = gestion.eliminarFicherosPorTamaño(Size);
+        this.listaArchivos = gestion.seleccionarFicherosPorTamaño(sizeMin);
         TableModelArchivos modelo = new TableModelArchivos(listaArchivos);
         jTableArchivos.setModel(modelo);
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);

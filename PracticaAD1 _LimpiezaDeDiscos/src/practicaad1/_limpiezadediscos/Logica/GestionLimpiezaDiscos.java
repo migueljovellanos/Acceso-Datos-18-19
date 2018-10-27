@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,7 +6,6 @@
 package practicaad1._limpiezadediscos.Logica;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,6 +46,14 @@ public class GestionLimpiezaDiscos {
      */
     public String getLog() {
         return log;
+    }   
+    
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     /**
@@ -75,15 +81,8 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
     
+
     /**
      * Metodo que borra todos los ficheros de una determinada categoria pasada
      * por parametro.
@@ -114,7 +113,7 @@ public class GestionLimpiezaDiscos {
             default:
                 break;
         }
-        
+
         return ficherosFiltrados;
     }
 
@@ -128,8 +127,8 @@ public class GestionLimpiezaDiscos {
      * @throws
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
-    public List<File> eliminarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
-          return Filtros.filtrarFicherosTamanoMinimo(listarArchivosRecursivo(unidadSeleccionada), tamano);
+    public List<File> seleccionarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
+        return Filtros.filtrarFicherosTamanoMinimo(listarArchivosRecursivo(unidadSeleccionada), tamano);
     }
 
     /**
@@ -251,11 +250,10 @@ public class GestionLimpiezaDiscos {
         }
         return false;
     }
-    
-    
-    public void deleteFiles(List<File> archivos){
-         for (File file : archivos) {
-                file.delete();
-            }
+
+    public void deleteFiles(List<File> archivos) {
+        for (File file : archivos) {
+            file.delete();
+        }
     }
 }

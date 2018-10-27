@@ -300,7 +300,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jDialogSeleccionSize dialogoSize= new jDialogSeleccionSize(this, rootPaneCheckingEnabled,gestion);
         dialogoSize.setVisible(true);
         try {
-            jDialogBorrarSize dialogo = new jDialogBorrarSize(this, rootPaneCheckingEnabled, gestion.getSize(), gestion);
+            jDialogBorrarSize dialogo = new jDialogBorrarSize(this, rootPaneCheckingEnabled, gestion);
             dialogo.setVisible(true);
         } catch (MisExcepciones.NoExisteDirectorio ex) {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);

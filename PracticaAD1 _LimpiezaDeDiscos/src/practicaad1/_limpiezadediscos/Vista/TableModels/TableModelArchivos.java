@@ -45,7 +45,7 @@ public class TableModelArchivos extends AbstractTableModel {
             case 1:
                 return listaArchivos.get(rowindex).getPath();
             case 2:
-                return String.format("%.2f", ((float) (listaArchivos.get(rowindex).length() / 1024) / 1024));
+                return (int) ((listaArchivos.get(rowindex).length() / 1024) / 1024);
         }
         return null;
     }
