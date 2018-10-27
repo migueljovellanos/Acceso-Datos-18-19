@@ -46,8 +46,8 @@ public class GestionLimpiezaDiscos {
      */
     public String getLog() {
         return log;
-    }   
-    
+    }
+
     public int getSize() {
         return size;
     }
@@ -80,8 +80,6 @@ public class GestionLimpiezaDiscos {
         }
         return contadorBorrados;
     }
-
-    
 
     /**
      * Metodo que borra todos los ficheros de una determinada categoria pasada
@@ -255,5 +253,13 @@ public class GestionLimpiezaDiscos {
         for (File file : archivos) {
             file.delete();
         }
+    }
+
+    public String getTotalSpaceGb() {
+        return String.valueOf(getUnidadSeleccionada().getTotalSpace()/1024/1024/1024);
+    }
+
+    public String getFreeSpaceGb() {
+        return String.valueOf(getUnidadSeleccionada().getFreeSpace()/1024/1024/1024);
     }
 }

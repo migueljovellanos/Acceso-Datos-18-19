@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
@@ -38,7 +40,14 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
         this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
         this.setLocationRelativeTo(parent);
         this.setLocationRelativeTo(parent);
+        jButtonBorrarSeleccionados.setEnabled(false);
         pintarTabla();
+        jTableArchivos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                jButtonBorrarSeleccionados.setEnabled(true);
+            }
+        });
 
     }
 
@@ -57,6 +66,7 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
         jButtonBorrarSeleccionados = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jButtonCandelar = new javax.swing.JButton();
+        jButtonBorrarTodos = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -91,6 +101,13 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
             }
         });
 
+        jButtonBorrarTodos.setText("Borrar todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +120,9 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonCandelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBorrarTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBorrarSeleccionados)))
                 .addContainerGap())
         );
@@ -113,11 +132,12 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBorrarSeleccionados)
-                    .addComponent(jButtonCandelar))
+                    .addComponent(jButtonCandelar)
+                    .addComponent(jButtonBorrarTodos))
                 .addContainerGap())
         );
 
@@ -147,6 +167,18 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonBorrarSeleccionadosActionPerformed
 
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(this, "¿ Seguro que desea borrar estos ficheros ?");
+        if (opcion == 0) {
+            gestion.deleteFiles(listaArchivos);
+        }
+        try {
+            pintarTabla();
+        } catch (MisExcepciones.NoExisteDirectorio ex) {
+            Logger.getLogger(jDialogBorrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
     private void pintarTabla() throws MisExcepciones.NoExisteDirectorio {
         this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
         TableModelArchivos modelo = new TableModelArchivos(listaArchivos);
@@ -158,6 +190,7 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrarSeleccionados;
+    private javax.swing.JButton jButtonBorrarTodos;
     private javax.swing.JButton jButtonCandelar;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;

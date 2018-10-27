@@ -9,8 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.JOptionPane;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
 import practicaad1._limpiezadediscos.Logica.MisExcepciones;
 
@@ -32,6 +31,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("/home/miguel/Documentos/Acceso-Datos-18-19/PracticaAD1 _LimpiezaDeDiscos/src/practicaad1/_limpiezadediscos/Archivos/icono.png");
         this.setIconImage(img.getImage());
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
         jDialogSeleccionarUnidad.setVisible(true);
         if (jDialogSeleccionarUnidad.getGestion() != null) {
@@ -40,7 +40,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         } else {
             cerrar = true;
         }
-
+        pintarEspacioDisco();
     }
 
     public static boolean isCerrar() {
@@ -70,6 +70,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jButtonBorrarDuplicados = new javax.swing.JButton();
         jButtonEliminarFicherosSize = new javax.swing.JButton();
         jLabelEspacioLibreTotal = new javax.swing.JLabel();
+        jLabelEspacioTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Herramienta limpieza disco");
@@ -87,7 +88,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         });
 
         jLabelOpcionesExtra.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabelOpcionesExtra.setText("Opciones extra:");
+        jLabelOpcionesExtra.setText("Opciones :");
 
         jButtonBorrarImagenes.setText("Borrar imagenes");
         jButtonBorrarImagenes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -149,6 +150,12 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             }
         });
 
+        jLabelEspacioLibreTotal.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabelEspacioLibreTotal.setText("Espacio libre :");
+
+        jLabelEspacioTotal.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabelEspacioTotal.setText("Espacio total:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,23 +170,25 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabelRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelOpcionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jButtonBorrarImagenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonBorrarVideos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonBorrarMusica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonBorrarDocumentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(113, 113, 113)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonEliminarFicherosSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonBorrarDuplicados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonLimpiarDisco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelOpcionesExtra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarImagenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarVideos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarMusica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarDocumentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(113, 113, 113)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonEliminarFicherosSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarDuplicados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonLimpiarDisco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelEspacioLibreTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabelEspacioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelEspacioLibreTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -195,7 +204,9 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
                         .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonSeleccionarUnidad)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelEspacioLibreTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelEspacioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelEspacioLibreTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelOpcionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -280,7 +291,10 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarImagenesActionPerformed
 
     private void jButtonLimpiarDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarDiscoActionPerformed
-        gestion.eliminarDirectoriosVaciosRecursivo();
+        int opcion = JOptionPane.showConfirmDialog(this, "¿ Seguro que desea borrar estos ficheros ?");
+        if (opcion == 0) {
+            gestion.eliminarDirectoriosVaciosRecursivo();
+        }
         jDialogLog log = new jDialogLog(this, rootPaneCheckingEnabled, gestion);
         log.setVisible(true);
     }//GEN-LAST:event_jButtonLimpiarDiscoActionPerformed
@@ -297,7 +311,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarDuplicadosActionPerformed
 
     private void jButtonEliminarFicherosSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarFicherosSizeActionPerformed
-        jDialogSeleccionSize dialogoSize= new jDialogSeleccionSize(this, rootPaneCheckingEnabled,gestion);
+        jDialogSeleccionSize dialogoSize = new jDialogSeleccionSize(this, rootPaneCheckingEnabled, gestion);
         dialogoSize.setVisible(true);
         try {
             jDialogBorrarSize dialogo = new jDialogBorrarSize(this, rootPaneCheckingEnabled, gestion);
@@ -306,8 +320,6 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonEliminarFicherosSizeActionPerformed
-
-    
 
     /**
      * @param args the command line arguments
@@ -360,9 +372,15 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSeleccionarUnidad;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabelEspacioLibreTotal;
+    private javax.swing.JLabel jLabelEspacioTotal;
     private javax.swing.JLabel jLabelOpcionesExtra;
     private javax.swing.JLabel jLabelRuta;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void pintarEspacioDisco() {
+        jLabelEspacioTotal.setText("Espacio total : "+gestion.getTotalSpaceGb()+ " GB.");
+        jLabelEspacioLibreTotal.setText("Espacio libre : "+gestion.getFreeSpaceGb()+ " GB.");
+    }
 }

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
 import practicaad1._limpiezadediscos.Logica.MisExcepciones;
 
@@ -34,7 +36,14 @@ public class jDialogBorrarDuplicados extends javax.swing.JDialog {
         this.listaArchivos = gestion.getArchivosDuplicados();
         this.setLocationRelativeTo(parent);
         this.setLocationRelativeTo(parent);
+        jButtonBorrarSeleccionados.setEnabled(false);
         pintarTabla();
+        jTableArchivos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                jButtonBorrarSeleccionados.setEnabled(true);
+            }
+        });
     }
 
     /**
