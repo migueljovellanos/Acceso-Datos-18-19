@@ -256,10 +256,10 @@ public class GestionLimpiezaDiscos {
     }
 
     public String getTotalSpaceGb() {
-        return String.valueOf(getUnidadSeleccionada().getTotalSpace()/1024/1024/1024);
+        return String.valueOf(getUnidadSeleccionada().getTotalSpace() / 1024 / 1024 / 1024);
     }
 
     public String getFreeSpaceGb() {
-        return String.valueOf(getUnidadSeleccionada().getFreeSpace()/1024/1024/1024);
+        return String.valueOf(getUnidadSeleccionada().getFreeSpace() / 1024 / 1024 / 1024);
     }
 }
