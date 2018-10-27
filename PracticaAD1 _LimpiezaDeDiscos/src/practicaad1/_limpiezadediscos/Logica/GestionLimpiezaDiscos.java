@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class GestionLimpiezaDiscos {
 
-    private File unidadSeleccionada;
+    private final File unidadSeleccionada;
     private String log = "";
     private int size;
 
@@ -67,9 +67,7 @@ public class GestionLimpiezaDiscos {
         int contadorBorrados = 0;
 
         listaFicherosTemporal = unidadSeleccionada.listFiles();
-        for (File fichero : listaFicherosTemporal) {
-            listaFicheros.add(fichero);
-        }
+        listaFicheros.addAll(Arrays.asList(listaFicherosTemporal));
 
         for (File directorio : listaFicheros) {
             if (directorio.isDirectory() && directorio.list().length == 0) {
