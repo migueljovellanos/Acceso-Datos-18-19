@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
 import practicaad1._limpiezadediscos.Logica.MisExcepciones;
 
@@ -32,6 +34,17 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
         jDialogSeleccionarUnidad.setVisible(true);
         if (jDialogSeleccionarUnidad.getGestion() != null) {
@@ -380,7 +393,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void pintarEspacioDisco() {
-        jLabelEspacioTotal.setText("Espacio total : "+gestion.getTotalSpaceGb()+ " GB.");
-        jLabelEspacioLibreTotal.setText("Espacio libre : "+gestion.getFreeSpaceGb()+ " GB.");
+        jLabelEspacioTotal.setText("Espacio total : " + gestion.getTotalSpaceGb() + " GB.");
+        jLabelEspacioLibreTotal.setText("Espacio libre : " + gestion.getFreeSpaceGb() + " GB.");
     }
 }
