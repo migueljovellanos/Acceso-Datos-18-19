@@ -232,6 +232,9 @@ public class GestionLimpiezaDiscos {
         }
 
         return resultado;
+
+
+    
     }
 
     private boolean CompareFiles(File archivoA, File archivoB) {

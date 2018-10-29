@@ -33,7 +33,7 @@ public class Filtros {
         List<File> ficherosFiltrados = new ArrayList();
         for (File fichero : ficheros) {
             String name = fichero.getName();
-            if (name.endsWith("jpg") || name.endsWith("gif") || name.endsWith("tiff") || name.endsWith("jpeg") || name.endsWith("PNG")) {
+            if (name.endsWith("jpg") || name.endsWith("gif") || name.endsWith("tiff") || name.endsWith("jpeg") || name.endsWith("png")) {
                 ficherosFiltrados.add(fichero);
             }
         }
