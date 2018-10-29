@@ -26,6 +26,10 @@ public class GestionLimpiezaDiscos {
     private String log = "";
     private int size;
 
+    /**
+     * Constructor que recibe un File para crear una gestion a partir de ese fichero
+     * @param unidad File a partir del cual se realiza la gestion
+     */
     public GestionLimpiezaDiscos(File unidad) {
         this.unidadSeleccionada = unidad;
     }
@@ -196,6 +200,10 @@ public class GestionLimpiezaDiscos {
         return contadorBorrados;
     }
 
+    /**
+     * Metodo que compara todos los archivos y devuelve una lista con los que esten duplicados
+     * @return List con los archivos duplicados
+     */
     public List<File> getArchivosDuplicados() {
         List<File> duplicados = new ArrayList<>();
 
@@ -218,6 +226,11 @@ public class GestionLimpiezaDiscos {
 
     }
 
+    /**
+     * Metodo que 
+     * @param carpetaRaiz
+     * @return 
+     */
     private List<File> listarArchivosRecursivo(File carpetaRaiz) {
         List<File> resultado = new ArrayList<>();
 
