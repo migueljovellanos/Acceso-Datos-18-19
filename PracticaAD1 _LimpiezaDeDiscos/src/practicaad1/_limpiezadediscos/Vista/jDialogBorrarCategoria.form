@@ -34,15 +34,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabelTitulo" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" pref="500" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
                       <Component id="jButtonCandelar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonMoverArchivos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonBorrarTodos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonBorrarSeleccionados" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -58,8 +60,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonBorrarSeleccionados" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonCandelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBorrarTodos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMoverArchivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCandelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -115,6 +118,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBorrarTodosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonMoverArchivos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mover archivos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMoverArchivosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

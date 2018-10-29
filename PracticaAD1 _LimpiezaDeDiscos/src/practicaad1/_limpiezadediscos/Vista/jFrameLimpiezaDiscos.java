@@ -97,7 +97,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         jLabelOpcionesExtra.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelOpcionesExtra.setText("Opciones :");
 
-        jButtonBorrarImagenes.setText("Borrar imagenes");
+        jButtonBorrarImagenes.setText("Gestionar imagenes");
         jButtonBorrarImagenes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonBorrarImagenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             }
         });
 
-        jButtonBorrarVideos.setText("Borrar videos");
+        jButtonBorrarVideos.setText("Gestionar videos");
         jButtonBorrarVideos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonBorrarVideos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +113,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             }
         });
 
-        jButtonBorrarDocumentos.setText("Borrar documentos");
+        jButtonBorrarDocumentos.setText("Gestionar documentos");
         jButtonBorrarDocumentos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonBorrarDocumentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +121,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
             }
         });
 
-        jButtonBorrarMusica.setText("Borrar musica");
+        jButtonBorrarMusica.setText("Gestionar musica");
         jButtonBorrarMusica.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonBorrarMusica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

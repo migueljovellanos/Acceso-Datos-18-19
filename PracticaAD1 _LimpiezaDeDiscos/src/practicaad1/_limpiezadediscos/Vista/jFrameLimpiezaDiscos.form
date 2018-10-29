@@ -161,7 +161,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBorrarImagenes">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Borrar imagenes"/>
+            <Property name="text" type="java.lang.String" value="Gestionar imagenes"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
@@ -170,7 +170,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBorrarVideos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Borrar videos"/>
+            <Property name="text" type="java.lang.String" value="Gestionar videos"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
@@ -179,7 +179,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBorrarDocumentos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Borrar documentos"/>
+            <Property name="text" type="java.lang.String" value="Gestionar documentos"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
@@ -188,7 +188,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBorrarMusica">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Borrar musica"/>
+            <Property name="text" type="java.lang.String" value="Gestionar musica"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
