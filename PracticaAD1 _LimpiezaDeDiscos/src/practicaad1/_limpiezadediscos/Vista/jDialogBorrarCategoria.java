@@ -30,7 +30,12 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
     private String categoria;
 
     /**
-     * Creates new form jDialogBorrarCategoria
+     * 
+     * @param parent
+     * @param modal
+     * @param categoria
+     * @param gestion
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
      */
     public jDialogBorrarCategoria(java.awt.Frame parent, boolean modal, String categoria, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
         super(parent, modal);
@@ -183,7 +188,7 @@ public class jDialogBorrarCategoria extends javax.swing.JDialog {
         this.listaArchivos = gestion.seleccionarFicherosPorCategoria(categoria);
         TableModelArchivos modelo = new TableModelArchivos(listaArchivos);
         jTableArchivos.setModel(modelo);
-        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
         jTableArchivos.setRowSorter(elQueOrdena);
     }
 

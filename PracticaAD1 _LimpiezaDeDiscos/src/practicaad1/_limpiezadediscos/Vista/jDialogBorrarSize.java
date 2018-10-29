@@ -30,7 +30,11 @@ public class jDialogBorrarSize extends javax.swing.JDialog {
     private int sizeMin;
 
     /**
-     * Creates new form jDialogBorrarCategoria
+     * 
+     * @param parent
+     * @param modal
+     * @param gestion
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
      */
     public jDialogBorrarSize(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
         super(parent, modal);
@@ -117,7 +121,6 @@ public class jDialogBorrarSize extends javax.swing.JDialog {
                     .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonCandelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBorrarTodos)
@@ -133,10 +136,11 @@ public class jDialogBorrarSize extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonBorrarSeleccionados)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonCandelar)
-                    .addComponent(jButtonBorrarTodos))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonBorrarSeleccionados)
+                        .addComponent(jButtonBorrarTodos)))
                 .addContainerGap())
         );
 
@@ -182,7 +186,7 @@ public class jDialogBorrarSize extends javax.swing.JDialog {
         this.listaArchivos = gestion.seleccionarFicherosPorTamaño(sizeMin);
         TableModelArchivos modelo = new TableModelArchivos(listaArchivos);
         jTableArchivos.setModel(modelo);
-        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(modelo);
         jTableArchivos.setRowSorter(elQueOrdena);
     }
 

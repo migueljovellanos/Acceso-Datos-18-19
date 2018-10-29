@@ -18,8 +18,11 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
     GestionLimpiezaDiscos gestion;
 
     /**
-     * Creates new form jDialogSeleccionarUnidad
-     */
+    * 
+    * @param parent
+    * @param modal
+    * @param gestion 
+    */
     public jDialogSeleccionarUnidad(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();

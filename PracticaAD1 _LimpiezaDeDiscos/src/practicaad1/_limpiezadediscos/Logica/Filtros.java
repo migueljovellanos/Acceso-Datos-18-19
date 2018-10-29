@@ -80,7 +80,7 @@ public class Filtros {
      * directorios
      * @return Array de Strings con el nombre de los directorios que cumplen el
      * filtro
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static String[] filtrarDirectorios(String ruta) throws MisExcepciones.NoExisteDirectorio {
         File dir = new File(ruta);
@@ -88,12 +88,8 @@ public class Filtros {
         if (!dir.exists()) {
             throw new MisExcepciones.NoExisteDirectorio();
         }
-        File[] directorios = dir.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isDirectory();
-            }
-        });
+        File[] directorios;
+        directorios = dir.listFiles(File::isDirectory);
 
         String paths[] = new String[directorios.length];
         for (int i = 0; i < paths.length; i++) {
@@ -111,9 +107,10 @@ public class Filtros {
      *
      * @param ruta String en el que se pasa la ruta en la que se buscan los
      * ficheros
+     * @param dias
      * @return Array de Strings con el nombre de los ficheros modificados en las
      * ultimas 24H
-     * @throws accesodatosficheros.Logica.MisExcepciones.NoExisteDirectorio
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static File[] filtrarFicherosModificadosUltimas24H(String ruta, int dias) throws MisExcepciones.NoExisteDirectorio {
         File dir = new File(ruta);
@@ -122,7 +119,8 @@ public class Filtros {
             throw new MisExcepciones.NoExisteDirectorio();
         }
 
-        File[] directorios = dir.listFiles(new FileFilter() {
+        File[] directorios;
+        directorios = dir.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {
                 Date fechaActual = new Date();

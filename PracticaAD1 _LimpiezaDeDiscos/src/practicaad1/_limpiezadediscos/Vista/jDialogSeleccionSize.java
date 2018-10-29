@@ -15,9 +15,12 @@ public class jDialogSeleccionSize extends javax.swing.JDialog {
     
     GestionLimpiezaDiscos gestion;
 
-    /**
-     * Creates new form jDialogSeleccionSize
-     */
+   /**
+    * 
+    * @param parent
+    * @param modal
+    * @param gestion 
+    */
     public jDialogSeleccionSize(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();

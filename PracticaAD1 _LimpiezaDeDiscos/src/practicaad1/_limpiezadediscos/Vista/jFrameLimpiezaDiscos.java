@@ -36,13 +36,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         this.setResizable(false);
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
         }
         jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
@@ -363,6 +357,7 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 jFrameLimpiezaDiscos frame = new jFrameLimpiezaDiscos();
                 if (frame.isCerrar()) {

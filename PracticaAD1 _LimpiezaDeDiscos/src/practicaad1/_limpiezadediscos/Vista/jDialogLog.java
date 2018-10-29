@@ -16,7 +16,10 @@ public class jDialogLog extends javax.swing.JDialog {
     private GestionLimpiezaDiscos gestion;
 
     /**
-     * Creates new form jDialogLog from frame
+     * 
+     * @param parent
+     * @param modal
+     * @param gestion 
      */
     public jDialogLog(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
@@ -28,7 +31,10 @@ public class jDialogLog extends javax.swing.JDialog {
     }
 
     /**
-     * Creates new form jDialogLog from dialog
+     * 
+     * @param parent
+     * @param modal
+     * @param gestion 
      */
     public jDialogLog(java.awt.Dialog parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);

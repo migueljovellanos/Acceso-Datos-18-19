@@ -27,7 +27,11 @@ public class jDialogBorrarDuplicados extends javax.swing.JDialog {
     private List<File> listaArchivos;
 
     /**
-     * Creates new form jDialogBorrarCategoria
+     * 
+     * @param parent
+     * @param modal
+     * @param gestion
+     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
      */
     public jDialogBorrarDuplicados(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) throws MisExcepciones.NoExisteDirectorio {
         super(parent, modal);
