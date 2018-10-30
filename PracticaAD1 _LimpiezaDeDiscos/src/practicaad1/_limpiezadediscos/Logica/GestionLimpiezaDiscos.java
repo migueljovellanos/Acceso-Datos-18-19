@@ -227,9 +227,9 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que 
-     * @param carpetaRaiz
-     * @return 
+     * Metodo que guarda en un array todos los archivos del directorio que recive por parametro y sus subdirectorios
+     * @param carpetaRaiz   Directorio en el que busca los archivls
+     * @return List con los archivos que tiene ese directorio
      */
     private List<File> listarArchivosRecursivo(File carpetaRaiz) {
         List<File> resultado = new ArrayList<>();
@@ -248,6 +248,12 @@ public class GestionLimpiezaDiscos {
 
     }
 
+    /**
+     * Metodo que compara byte a byte dos ficheros para saber si son el mismo fichero
+     * @param archivoA Fichero que se desea comparar
+     * @param archivoB Fichero con el que se desea comparar
+     * @return True si son el mismo archivo, false si no lo son.
+     */
     private boolean CompareFiles(File archivoA, File archivoB) {
 
         try {
@@ -260,17 +266,29 @@ public class GestionLimpiezaDiscos {
         }
         return false;
     }
-
+    
+    /**
+     * Metodo que borra todos los archivos de la lista que recibe por parametro
+     * @param archivos lista con los archivos que deben ser borrados
+     */
     public void deleteFiles(List<File> archivos) {
         for (File file : archivos) {
             file.delete();
         }
     }
-
+    
+    /**
+     * Metodo que devuelve un String con los Gb de espacio total de la unidad seleccionada
+     * @return Gb de espacio total
+     */
     public String getTotalSpaceGb() {
         return String.valueOf(getUnidadSeleccionada().getTotalSpace() / 1024 / 1024 / 1024);
     }
 
+    /**
+     * Metodo que devuelve un String con los Gb de espacio libre de la unidad seleccionada
+     * @return Gb de espacio libre
+     */
     public String getFreeSpaceGb() {
         return String.valueOf(getUnidadSeleccionada().getFreeSpace() / 1024 / 1024 / 1024);
     }
