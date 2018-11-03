@@ -25,13 +25,17 @@ public class GestionLimpiezaDiscos {
     private final File unidadSeleccionada;
     private String log = "";
     private int size;
+    private List<File> resultado = new ArrayList<>();
 
     /**
-     * Constructor que recibe un File para crear una gestion a partir de ese fichero
+     * Constructor que recibe un File para crear una gestion a partir de ese
+     * fichero
+     *
      * @param unidad File a partir del cual se realiza la gestion
      */
     public GestionLimpiezaDiscos(File unidad) {
         this.unidadSeleccionada = unidad;
+        listarArchivosRecursivamente(unidadSeleccionada);
     }
 
     /**
@@ -94,8 +98,9 @@ public class GestionLimpiezaDiscos {
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public List<File> seleccionarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
+        
 
-        List<File> ficheros = listarArchivosRecursivo(unidadSeleccionada);
+        List<File> ficheros = resultado;
         List<File> ficherosFiltrados = new ArrayList<>();
         switch (categoria) {
             case "Imagenes":
@@ -128,7 +133,8 @@ public class GestionLimpiezaDiscos {
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public List<File> seleccionarFicherosPorTamaño(int tamano) throws MisExcepciones.NoExisteDirectorio {
-        return Filtros.filtrarFicherosTamanoMinimo(listarArchivosRecursivo(unidadSeleccionada), tamano);
+
+        return Filtros.filtrarFicherosTamanoMinimo(resultado, tamano);
     }
 
     /**
@@ -201,13 +207,16 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que compara todos los archivos y devuelve una lista con los que esten duplicados
+     * Metodo que compara todos los archivos y devuelve una lista con los que
+     * esten duplicados
+     *
      * @return List con los archivos duplicados
      */
     public List<File> getArchivosDuplicados() {
+
         List<File> duplicados = new ArrayList<>();
 
-        List<File> listaArchivosDisco = listarArchivosRecursivo(getUnidadSeleccionada());
+        List<File> listaArchivosDisco = resultado;
 
         Collections.sort(duplicados, new Comparator<File>() {
             @Override
@@ -227,29 +236,27 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que guarda en un array todos los archivos del directorio que recive por parametro y sus subdirectorios
-     * @param carpetaRaiz   Directorio en el que busca los archivls
-     * @return List con los archivos que tiene ese directorio
+     * Metodo que lista todos los archivos de la carpeta y de sus subcarpetas.
+     * @param file Fichero con la ruta desde la que se buscan los archivos
      */
-    private List<File> listarArchivosRecursivo(File carpetaRaiz) {
-        List<File> resultado = new ArrayList<>();
+    public void listarArchivosRecursivamente(File file) {
+        File[] ficheros = file.listFiles();
 
-        File[] archivos = carpetaRaiz.listFiles();
-
-        for (File archivo : archivos) {
-            if (archivo.isDirectory()) {
-                resultado.addAll(listarArchivosRecursivo(archivo));
-            } else {
-                resultado.add(archivo);
+        if (ficheros != null) {
+            for (File fichero : ficheros) {
+                if (fichero.isDirectory()) {
+                    listarArchivosRecursivamente(fichero);
+                } else {
+                    resultado.add(fichero);
+                }
             }
         }
-
-        return resultado;
-
     }
 
     /**
-     * Metodo que compara byte a byte dos ficheros para saber si son el mismo fichero
+     * Metodo que compara byte a byte dos ficheros para saber si son el mismo
+     * fichero
+     *
      * @param archivoA Fichero que se desea comparar
      * @param archivoB Fichero con el que se desea comparar
      * @return True si son el mismo archivo, false si no lo son.
@@ -266,9 +273,10 @@ public class GestionLimpiezaDiscos {
         }
         return false;
     }
-    
+
     /**
      * Metodo que borra todos los archivos de la lista que recibe por parametro
+     *
      * @param archivos lista con los archivos que deben ser borrados
      */
     public void deleteFiles(List<File> archivos) {
@@ -276,9 +284,11 @@ public class GestionLimpiezaDiscos {
             file.delete();
         }
     }
-    
+
     /**
-     * Metodo que devuelve un String con los Gb de espacio total de la unidad seleccionada
+     * Metodo que devuelve un String con los Gb de espacio total de la unidad
+     * seleccionada
+     *
      * @return Gb de espacio total
      */
     public String getTotalSpaceGb() {
@@ -286,7 +296,9 @@ public class GestionLimpiezaDiscos {
     }
 
     /**
-     * Metodo que devuelve un String con los Gb de espacio libre de la unidad seleccionada
+     * Metodo que devuelve un String con los Gb de espacio libre de la unidad
+     * seleccionada
+     *
      * @return Gb de espacio libre
      */
     public String getFreeSpaceGb() {

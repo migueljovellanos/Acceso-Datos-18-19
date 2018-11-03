@@ -16,13 +16,17 @@ import java.util.List;
  * @author migue
  */
 public class Filtros {
-    
+
     /**
-     * Metodo que recibe una lista , filtra las que pesen mas de X mb y devuelve una lista con los archivos que cumple el filtro
+     * Metodo que recibe una lista , filtra las que pesen mas de X mb y devuelve
+     * una lista con los archivos que cumple el filtro
+     *
      * @param ficheros lista con los ficheros que se deben filtrar
-     * @param tamanoMinimo tamaño en mb a partir del cual se devolveran los ficheros
+     * @param tamanoMinimo tamaño en mb a partir del cual se devolveran los
+     * ficheros
      * @return lista con los ficheros que cumplen el filtro
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static List<File> filtrarFicherosTamanoMinimo(List<File> ficheros, int tamanoMinimo) throws MisExcepciones.NoExisteDirectorio {
 
@@ -37,10 +41,13 @@ public class Filtros {
     }
 
     /**
-     * Metodo que recibe una lista , filtra las imagenes y devuelve una lista con los archivos que cumple el filtro
+     * Metodo que recibe una lista , filtra las imagenes y devuelve una lista
+     * con los archivos que cumple el filtro
+     *
      * @param ficheros lista con los ficheros que se deben filtrar
      * @return lista con los ficheros que cumplen el filtro
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static List<File> filtrarFicherosImagenes(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
@@ -54,10 +61,13 @@ public class Filtros {
     }
 
     /**
-     * Metodo que recibe una lista , filtra los videos y devuelve una lista con los archivos que cumple el filtro
+     * Metodo que recibe una lista , filtra los videos y devuelve una lista con
+     * los archivos que cumple el filtro
+     *
      * @param ficheros lista con los ficheros que se deben filtrar
      * @return lista con los ficheros que cumplen el filtro
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static List<File> filtrarFicherosVideos(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
@@ -71,10 +81,13 @@ public class Filtros {
     }
 
     /**
-     * Metodo que recibe una lista , filtra los audios y devuelve una lista con los archivos que cumple el filtro
+     * Metodo que recibe una lista , filtra los audios y devuelve una lista con
+     * los archivos que cumple el filtro
+     *
      * @param ficheros lista con los ficheros que se deben filtrar
      * @return lista con los ficheros que cumplen el filtro
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static List<File> filtrarFicherosAudio(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
@@ -88,10 +101,13 @@ public class Filtros {
     }
 
     /**
-     * Metodo que recibe una lista , filtra los documentos y devuelve una lista con los archivos que cumple el filtro
+     * Metodo que recibe una lista , filtra los documentos y devuelve una lista
+     * con los archivos que cumple el filtro
+     *
      * @param ficheros lista con los ficheros que se deben filtrar
      * @return lista con los ficheros que cumplen el filtro
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio 
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static List<File> filtrarFicherosDocumentos(List<File> ficheros) throws MisExcepciones.NoExisteDirectorio {
         List<File> ficherosFiltrados = new ArrayList();
@@ -111,7 +127,8 @@ public class Filtros {
      * directorios
      * @return Array de Strings con el nombre de los directorios que cumplen el
      * filtro
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static String[] filtrarDirectorios(String ruta) throws MisExcepciones.NoExisteDirectorio {
         File dir = new File(ruta);
@@ -130,8 +147,6 @@ public class Filtros {
         return paths;
     }
 
-    
-
     /**
      * Metodo que devuelve los nombres de los ficheros que fueron modificados en
      * las ultimas 24 horas
@@ -141,7 +156,8 @@ public class Filtros {
      * @param dias
      * @return Array de Strings con el nombre de los ficheros modificados en las
      * ultimas 24H
-     * @throws practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
+     * @throws
+     * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public static File[] filtrarFicherosModificadosUltimas24H(String ruta, int dias) throws MisExcepciones.NoExisteDirectorio {
         File dir = new File(ruta);

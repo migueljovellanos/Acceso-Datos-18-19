@@ -18,11 +18,11 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
     GestionLimpiezaDiscos gestion;
 
     /**
-    * 
-    * @param parent
-    * @param modal
-    * @param gestion 
-    */
+     *
+     * @param parent
+     * @param modal
+     * @param gestion
+     */
     public jDialogSeleccionarUnidad(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();
@@ -112,7 +112,6 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
     public GestionLimpiezaDiscos getGestion() {
         return gestion;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonContinuar;

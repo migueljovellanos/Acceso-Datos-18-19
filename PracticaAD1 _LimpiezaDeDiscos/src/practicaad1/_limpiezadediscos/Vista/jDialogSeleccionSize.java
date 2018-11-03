@@ -12,15 +12,15 @@ import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
  * @author miguel
  */
 public class jDialogSeleccionSize extends javax.swing.JDialog {
-    
+
     GestionLimpiezaDiscos gestion;
 
-   /**
-    * 
-    * @param parent
-    * @param modal
-    * @param gestion 
-    */
+    /**
+     *
+     * @param parent
+     * @param modal
+     * @param gestion
+     */
     public jDialogSeleccionSize(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
         initComponents();
@@ -99,10 +99,9 @@ public class jDialogSeleccionSize extends javax.swing.JDialog {
     }//GEN-LAST:event_jSliderSizeStateChanged
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        gestion.setSize((int)jSliderSize.getValue());
+        gestion.setSize((int) jSliderSize.getValue());
         this.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;

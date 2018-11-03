@@ -12,7 +12,8 @@ package practicaad1._limpiezadediscos.Logica;
 public class MisExcepciones {
 
     /**
-     * Excepcion que se lanza si la ruta que se paso como parametro no es un directorio
+     * Excepcion que se lanza si la ruta que se paso como parametro no es un
+     * directorio
      */
     public static class NoEsDirectorio extends Exception {
 
@@ -60,5 +61,5 @@ public class MisExcepciones {
             super("El directorio introducido esta oculto");
         }
     }
-    
+
 }

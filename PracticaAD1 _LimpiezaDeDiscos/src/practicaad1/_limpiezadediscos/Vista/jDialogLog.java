@@ -16,10 +16,10 @@ public class jDialogLog extends javax.swing.JDialog {
     private GestionLimpiezaDiscos gestion;
 
     /**
-     * 
+     *
      * @param parent
      * @param modal
-     * @param gestion 
+     * @param gestion
      */
     public jDialogLog(java.awt.Frame parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
@@ -31,10 +31,10 @@ public class jDialogLog extends javax.swing.JDialog {
     }
 
     /**
-     * 
+     *
      * @param parent
      * @param modal
-     * @param gestion 
+     * @param gestion
      */
     public jDialogLog(java.awt.Dialog parent, boolean modal, GestionLimpiezaDiscos gestion) {
         super(parent, modal);
@@ -106,7 +106,6 @@ public class jDialogLog extends javax.swing.JDialog {
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
