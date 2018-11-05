@@ -34,11 +34,6 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
-        }
         jDialogSeleccionarUnidad jDialogSeleccionarUnidad = new jDialogSeleccionarUnidad(this, rootPaneCheckingEnabled, gestion);
         jDialogSeleccionarUnidad.setVisible(true);
         if (jDialogSeleccionarUnidad.getGestion() != null) {
