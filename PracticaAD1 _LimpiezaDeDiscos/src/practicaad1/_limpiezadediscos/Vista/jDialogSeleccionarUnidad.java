@@ -6,6 +6,7 @@
 package practicaad1._limpiezadediscos.Vista;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import practicaad1._limpiezadediscos.Logica.GestionLimpiezaDiscos;
 
 /**
@@ -46,6 +47,11 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
         jButtonContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabelSeleccionarUnidad.setText("Debe seleccionar una unidad:");
 
@@ -99,15 +105,22 @@ public class jDialogSeleccionarUnidad extends javax.swing.JDialog {
     private void jButtonUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUnidadActionPerformed
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.showOpenDialog(this);
-        gestion = new GestionLimpiezaDiscos(chooser.getSelectedFile());
-        jLabelRuta.setText(gestion.getUnidadSeleccionada().getAbsolutePath());
-        jButtonContinuar.setEnabled(true);
+        if (chooser.getSelectedFile() != null) {
+            jButtonContinuar.setEnabled(true);
+        }
 
     }//GEN-LAST:event_jButtonUnidadActionPerformed
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Este proceso puede tardar bastante ya que se debe la carpeta que usted ha seleccionado.");
+        gestion = new GestionLimpiezaDiscos(chooser.getSelectedFile());
+        jLabelRuta.setText(gestion.getUnidadSeleccionada().getAbsolutePath());
         this.dispose();
     }//GEN-LAST:event_jButtonContinuarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        System.exit(0);
+     }//GEN-LAST:event_formWindowClosing
 
     public GestionLimpiezaDiscos getGestion() {
         return gestion;

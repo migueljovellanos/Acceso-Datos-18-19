@@ -246,13 +246,16 @@ public class jFrameLimpiezaDiscos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEliminarFicherosSizeActionPerformed
 
     private void jButtonBorrarDuplicadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarDuplicadosActionPerformed
-
-        try {
-            jDialogBorrarDuplicados dialog = new jDialogBorrarDuplicados(this, rootPaneCheckingEnabled, gestion);
-            dialog.setVisible(true);
-        } catch (MisExcepciones.NoExisteDirectorio ex) {
-            Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+        int opcion = JOptionPane.showConfirmDialog(this, "¿ Seguro que desea borrar estos ficheros ?");
+        if (opcion == 0) {
+            try {
+                jDialogBorrarDuplicados dialog = new jDialogBorrarDuplicados(this, rootPaneCheckingEnabled, gestion);
+                dialog.setVisible(true);
+            } catch (MisExcepciones.NoExisteDirectorio ex) {
+                Logger.getLogger(jFrameLimpiezaDiscos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }//GEN-LAST:event_jButtonBorrarDuplicadosActionPerformed
 
     private void jButtonSeleccionarUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarUnidadActionPerformed
