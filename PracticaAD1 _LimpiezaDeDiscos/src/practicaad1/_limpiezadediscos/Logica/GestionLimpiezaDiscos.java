@@ -56,10 +56,20 @@ public class GestionLimpiezaDiscos {
         return log;
     }
 
+    /**
+     * Metodo que devuelve el tamaño a partir del cual se van a filtrar los
+     * archivos.
+     *
+     * @return int con el tamaño
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     *
+     * @param size
+     */
     public void setSize(int size) {
         this.size = size;
     }
@@ -98,7 +108,6 @@ public class GestionLimpiezaDiscos {
      * practicaad1._limpiezadediscos.Logica.MisExcepciones.NoExisteDirectorio
      */
     public List<File> seleccionarFicherosPorCategoria(String categoria) throws MisExcepciones.NoExisteDirectorio {
-        
 
         List<File> ficheros = resultado;
         List<File> ficherosFiltrados = new ArrayList<>();
@@ -237,6 +246,7 @@ public class GestionLimpiezaDiscos {
 
     /**
      * Metodo que lista todos los archivos de la carpeta y de sus subcarpetas.
+     *
      * @param file Fichero con la ruta desde la que se buscan los archivos
      */
     public void listarArchivosRecursivamente(File file) {
