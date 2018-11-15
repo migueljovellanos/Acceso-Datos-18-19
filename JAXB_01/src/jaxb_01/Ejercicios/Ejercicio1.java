@@ -5,8 +5,11 @@
  */
 package jaxb_01.Ejercicios;
 
-import javax.xml.bind.JAXBElement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jaxb.albaran.PedidoType;
+import jaxb_01.ExcepcionesAlbaran;
+import jaxb_01.GestionAlbaran;
 
 /**
  *
@@ -18,19 +21,18 @@ public class Ejercicio1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JAXBElement jaxbElement = null;
-        javax.xml.bind.JAXBContext jaxbCtx = null;
-
+        GestionAlbaran gestion = new GestionAlbaran();
+        PedidoType pedidoType = (PedidoType) gestion.unmarshalizar().getValue();
+        System.out.println(String.valueOf(gestion.calcularImportePedido(pedidoType)));
         try {
-            jaxbCtx = javax.xml.bind.JAXBContext.newInstance("jaxb.albaran");
-            javax.xml.bind.Unmarshaller unmarshaller = jaxbCtx.createUnmarshaller();
-            jaxbElement = (JAXBElement) unmarshaller.unmarshal(new java.io.File("albaran.xml")); //NOI18N
-        } catch (javax.xml.bind.JAXBException ex) {
-            // XXXTODO Handle exception
-            java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
+            gestion.addArticuloPedido(pedidoType, "BBB", "cascos", 5, 10, "");
+        } catch (ExcepcionesAlbaran.ErrorFecha ex) {
+            Logger.getLogger(Ejercicio1.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(String.valueOf(gestion.calcularImportePedido(pedidoType)));
+        gestion.deleteArticuloPorNombre(pedidoType, "cascos");
+        System.out.println(String.valueOf(gestion.calcularImportePedido(pedidoType)));
         
-        PedidoType pedidoType = (PedidoType) jaxbElement.getValue();
     }
 
 }
